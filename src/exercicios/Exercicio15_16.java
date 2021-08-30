@@ -2,13 +2,11 @@ package exercicios;
 
 import java.util.Scanner;
 
-/**
- Implemente um programa que receba dados
- digitados pelo usuário e atribua  a uma variável do tipo String
- e imprima a frase inserida no console.  */
+/**Concatene na variável criada acima a frase “ – Exemplo String”.   */
 
 
 public class Exercicio15_16 {
+
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -17,6 +15,9 @@ public class Exercicio15_16 {
         System.out.println("Digite o texto: ");
         textoUser = input.nextLine();
 
+        textoUser += "-Exemplo String";
+
         System.out.println("Texto digitado pelo usuário --> " + textoUser);
+
     }
 }
