@@ -2,12 +2,9 @@ package exercicios;
 
 import java.util.Scanner;
 
-/**
- * O valor pago por um Hotel da Praia de Iracema para seus porteiros é de R$ 10,25
- * por hora de trabalho. Faça um programa que pergunte ao usuário
- * quantas horas ele trabalhou e imprima na tela o valor do salário a ser recebido
- * por ele. */
-
+/**Modifique o programa anterior para que o sistema imprima uma mensagem
+ de alerta quando o valor a ser pago ao funcionário seja inferior a R$ 50,00:
+ "Atenção, dirija- se à direção do Hotel!".*/
 
 public class Exercicio29_30 {
 
@@ -24,6 +21,10 @@ public class Exercicio29_30 {
         float pagamento = horasTrabalhadas*10.25f;
 
         System.out.println("Por " + horasTrabalhadas +  " horas trabalhadas, você receberá R$" + pagamento);
+
+        if (pagamento<50){
+            System.out.println("Atenção, dirija- se à direção do Hotel!");
+        }
 
     }
 }
