@@ -1,4 +1,4 @@
-package exercicios;
+package exercicios_TDE_POO;
 
 /**Calcule o valor da multiplicação de um int por um double, atribuindo o valor a  um int. */
 

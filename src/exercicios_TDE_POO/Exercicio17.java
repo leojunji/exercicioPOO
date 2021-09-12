@@ -1,13 +1,15 @@
-package exercicios;
+package exercicios_TDE_POO;
 
 import java.util.Scanner;
 
-/**Concatene na variável criada acima a frase “ – Exemplo String”.   */
+
+/**Imprima na tela (console) o número de caracteres da String. */
 
 
-public class Exercicio15_16 {
+public class Exercicio17 {
 
     public static void main(String[] args) {
+
 
         Scanner input = new Scanner(System.in);
         String textoUser;
@@ -15,9 +17,10 @@ public class Exercicio15_16 {
         System.out.println("Digite o texto: ");
         textoUser = input.nextLine();
 
-        textoUser += "-Exemplo String";
 
         System.out.println("Texto digitado pelo usuário --> " + textoUser);
-
+        textoUser = textoUser.replace(" ", "");
+        System.out.println(textoUser.strip().length());
     }
 }
+

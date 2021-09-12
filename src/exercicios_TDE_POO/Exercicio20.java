@@ -1,4 +1,4 @@
-package exercicios;
+package exercicios_TDE_POO;
 
 /**Crie uma variável inteira com um valor qualquer e verifique se
  o valor desta  variável é menor que 15 ou maior que 100.*/

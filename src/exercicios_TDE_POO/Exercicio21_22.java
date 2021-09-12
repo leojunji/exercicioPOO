@@ -1,4 +1,4 @@
-package exercicios;
+package exercicios_TDE_POO;
 
 
 /**Agora compare se o valor das duas variáveis acima é igual.*/

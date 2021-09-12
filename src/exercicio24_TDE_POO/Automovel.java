@@ -1,6 +1,4 @@
-package exercicio24;
-
-import com.sun.security.jgss.GSSUtil;
+package exercicio24_TDE_POO;
 
 public class Automovel {
 

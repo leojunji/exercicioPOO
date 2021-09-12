@@ -1,4 +1,4 @@
-package exercicios;
+package exercicios_TDE_POO;
 
 public class Metodos {
 

@@ -1,4 +1,4 @@
-package exercicios;
+package exercicios_TDE_POO;
 
 
 /**Escreva um programa que imprima na tela a soma dos números ímpares

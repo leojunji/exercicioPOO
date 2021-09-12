@@ -1,6 +1,4 @@
-package exercicio24;
-
-import java.util.concurrent.atomic.AtomicBoolean;
+package exercicio24_TDE_POO;
 
 public class Ferrari extends Automovel {
 

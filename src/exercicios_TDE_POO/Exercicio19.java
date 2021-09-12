@@ -1,4 +1,4 @@
-package exercicios;
+package exercicios_TDE_POO;
 
 
 /**Calcule o resto da divisão de 99 por 4. */

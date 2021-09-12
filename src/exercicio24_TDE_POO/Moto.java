@@ -1,4 +1,4 @@
-package exercicio24;
+package exercicio24_TDE_POO;
 
 public class Moto extends Automovel{
 
