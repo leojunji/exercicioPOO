@@ -4,7 +4,7 @@ package exercicios_TDE_POO;
 /**Agora compare se o valor das duas variáveis acima é igual.*/
 
 
-public class Exercicio21_22 {
+public class Exercicio22 {
 
     public static void main(String[] args) {
 

@@ -6,7 +6,7 @@ import java.util.Scanner;
  de alerta quando o valor a ser pago ao funcionário seja inferior a R$ 50,00:
  "Atenção, dirija- se à direção do Hotel!".*/
 
-public class Exercicio29_30 {
+public class Exercicio30 {
 
     public static void main(String[] args) {
 

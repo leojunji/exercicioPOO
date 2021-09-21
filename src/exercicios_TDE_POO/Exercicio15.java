@@ -2,11 +2,13 @@ package exercicios_TDE_POO;
 
 import java.util.Scanner;
 
-/**Concatene na variável criada acima a frase “ – Exemplo String”.   */
+/**
+ Implemente um programa que receba dados
+ digitados pelo usuário e atribua  a uma variável do tipo String
+ e imprima a frase inserida no console.  */
 
 
-public class Exercicio15_16 {
-
+public class Exercicio15 {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -15,9 +17,7 @@ public class Exercicio15_16 {
         System.out.println("Digite o texto: ");
         textoUser = input.nextLine();
 
-        textoUser += "-Exemplo String";
-
         System.out.println("Texto digitado pelo usuário --> " + textoUser);
-
     }
 }
+
