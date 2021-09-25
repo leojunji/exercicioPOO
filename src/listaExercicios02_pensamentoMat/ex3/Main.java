@@ -1,4 +1,4 @@
-package listaExercicios02_POO.ex3;
+package listaExercicios02_pensamentoMat.ex3;
 
 
 

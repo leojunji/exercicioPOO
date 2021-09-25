@@ -1,4 +1,4 @@
-package listaExercicios02_POO.ex2;
+package listaExercicios02_pensamentoMat.ex2;
 
 public class Retangulo extends FormaGeometrica{
 

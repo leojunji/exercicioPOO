@@ -1,4 +1,4 @@
-package listaExercicios02_POO.ex1;
+package listaExercicios02_pensamentoMat.ex1;
 
 public class Main {
 
