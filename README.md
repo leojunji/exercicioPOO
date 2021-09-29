@@ -10,4 +10,8 @@ exercicios_TDE_POO --> exercícios 13 ao 32 do TDE da matéria de POO(exceto o e
 
 listaExercicios01_pensamentoMat --> lista de exercicios 01 da matéria de pensamento matemático
 
+listaExercicios01_pensamentoMat --> lista de exercicios 01 da matéria de pensamento matemático
+
 registroVenda --> exercício registrando venda da matéria de POO.
+
+avaliacao_um_POO --> avaliação da unidade 1, da materia de POO
