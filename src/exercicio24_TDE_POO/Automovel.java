@@ -7,11 +7,43 @@ public class Automovel {
     protected boolean carroFreiado = false;
     protected String automovel = "automovel";
 
+    public boolean isTanqueCheio() {
+        return tanqueCheio;
+    }
+
+    public void setTanqueCheio(boolean tanqueCheio) {
+        this.tanqueCheio = tanqueCheio;
+    }
+
+    public boolean isCarroMovimentando() {
+        return carroMovimentando;
+    }
+
+    public void setCarroMovimentando(boolean carroMovimentando) {
+        this.carroMovimentando = carroMovimentando;
+    }
+
+    public boolean isCarroFreiado() {
+        return carroFreiado;
+    }
+
+    public void setCarroFreiado(boolean carroFreiado) {
+        this.carroFreiado = carroFreiado;
+    }
+
+    public String getAutomovel() {
+        return automovel;
+    }
+
+    public void setAutomovel(String automovel) {
+        this.automovel = automovel;
+    }
+
     public void nomearAutomovel(String nome){
         this.automovel = nome;
     }
 
-    public void linha(){
+    public static void linha(){
         System.out.println("===========");
     }
     public void abastecer() {
