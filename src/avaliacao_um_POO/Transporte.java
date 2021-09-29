@@ -13,7 +13,7 @@ public class Transporte {
         this.movimentando = movimentando;
     }
 
-    public void linha(){
+    public static void linha(){
         System.out.println("===========");
     }
 
