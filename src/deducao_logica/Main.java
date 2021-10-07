@@ -13,7 +13,7 @@ public class Main {
         System.out.println("entrada 1 e 2 ficam separadas por virgula");
         System.out.println("Exemplo de entrada: (A->B),(B->C)");
         System.out.println("Digite a expressao: ");
-        String resp = input.nextLine().toUpperCase(Locale.ROOT);
+        String resp = input.nextLine();
         resp = resp.strip();
 
         boolean negacao = resp.contains("~");
@@ -98,7 +98,6 @@ public class Main {
 
 
         System.out.println("size: " + lst_expr.size());
-
 
         String resultado = "";
         if(lst_expr.contains("^") | lst_expr.contains("v") | lst_expr.size()==1 | lst_expr.size()==2) {
