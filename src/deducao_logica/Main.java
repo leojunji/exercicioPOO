@@ -13,7 +13,7 @@ public class Main {
         System.out.println("entrada 1 e 2 ficam separadas por virgula");
         System.out.println("Exemplo de entrada: (A->B),(B->C)");
         System.out.println("Digite a expressao: ");
-        String resp = input.nextLine();
+        String resp = input.nextLine().toUpperCase(Locale.ROOT);
         resp = resp.strip();
 
         boolean negacao = resp.contains("~");
@@ -101,40 +101,40 @@ public class Main {
 
 
         String resultado = "";
-        if(lst_expr.contains("^") | lst_expr.contains("v") | lst_expr.size()==1) {
+        if(lst_expr.contains("^") | lst_expr.contains("v") | lst_expr.size()==1 | lst_expr.size()==2) {
             if(lst_expr.size()==1) {
                 System.out.println("Adicao: ");
-                System.out.println("resultado: " + lst_expr.get(0).toUpperCase(Locale.ROOT) + " v B");
+                System.out.println("resultado: " + lst_expr.get(0) + " v B");
 
             }else if(lst_expr.size()==2){
 
                 System.out.println("Conjuncao: ");
-                System.out.print("resultado: " + lst_expr.get(0).toUpperCase(Locale.ROOT));
+                System.out.print("resultado: " + lst_expr.get(0));
                 System.out.print(" ^ ");
-                System.out.print(lst_expr.get(1).toUpperCase(Locale.ROOT));
+                System.out.print(lst_expr.get(1));
 
             }else if(lst_expr.size()==3){
 
                 System.out.println("Simplificação: ");
-                System.out.println("resultado: " + lst_expr.get(0).toUpperCase(Locale.ROOT));
+                System.out.println("resultado: " + lst_expr.get(0));
 
             }else if(lst_expr.size()==4){
 
                 System.out.println("Silogismo disjuntivo: ");
-                System.out.println("resultado: " + lst_expr.get(2).toUpperCase(Locale.ROOT));
+                System.out.println("resultado: " + lst_expr.get(2));
             }
         }else if(lst_expr.contains("->")){
             if(lst_expr.size()==4 & negacao){
 
                 System.out.println("Modus Tollens: ");
                 resultado = lst_expr.get(lst_expr.indexOf("->")-1);
-                System.out.println("resultado: ~" + resultado.toUpperCase(Locale.ROOT));
+                System.out.println("resultado: ~" + resultado);
 
             }else if(lst_expr.size()==4){
 
                 System.out.println("Modus Ponens: ");
                 resultado = lst_expr.get(lst_expr.indexOf("->")+1);
-                System.out.println("resultado: " + resultado.toUpperCase(Locale.ROOT));
+                System.out.println("resultado: " + resultado);
 
             }else if(lst_expr.size()==6){
 
@@ -146,7 +146,7 @@ public class Main {
                     resultado =  lst_expr.get(2) + "->" + lst_expr.get(3);
                 }
 
-                System.out.print("resultado: " + resultado.toUpperCase(Locale.ROOT));
+                System.out.print("resultado: " + resultado);
 
             }
         }
