@@ -62,7 +62,7 @@ public class Main {
         }
 
 
-        System.out.println("conectivos_lst: " + lst_conectivos);//----
+
 
         int indice_conectivos =  0;
         int count = 0;
@@ -98,8 +98,7 @@ public class Main {
 
 
 
-        System.out.println("lst_expr: " + lst_expr);//--
-        System.out.println("size: " + lst_expr.size());//--
+
 
 
         String resultado = "";
