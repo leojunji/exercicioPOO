@@ -97,24 +97,29 @@ public class Main {
         }
 
 
-
-
+        System.out.println("size: " + lst_expr.size());
 
 
         String resultado = "";
-        if(lst_expr.contains("^") | lst_expr.contains("v")) {
+        if(lst_expr.contains("^") | lst_expr.contains("v") | lst_expr.size()==1) {
             if(lst_expr.size()==1) {
                 System.out.println("Adicao: ");
                 System.out.println("resultado: " + lst_expr.get(0).toUpperCase(Locale.ROOT) + " v B");
+
             }else if(lst_expr.size()==2){
+
                 System.out.println("Conjuncao: ");
                 System.out.print("resultado: " + lst_expr.get(0).toUpperCase(Locale.ROOT));
                 System.out.print(" ^ ");
                 System.out.print(lst_expr.get(1).toUpperCase(Locale.ROOT));
+
             }else if(lst_expr.size()==3){
+
                 System.out.println("Simplificação: ");
                 System.out.println("resultado: " + lst_expr.get(0).toUpperCase(Locale.ROOT));
+
             }else if(lst_expr.size()==4){
+
                 System.out.println("Silogismo disjuntivo: ");
                 System.out.println("resultado: " + lst_expr.get(2).toUpperCase(Locale.ROOT));
             }
@@ -122,11 +127,9 @@ public class Main {
             if(lst_expr.size()==4 & negacao){
 
                 System.out.println("Modus Tollens: ");
-
-
                 resultado = lst_expr.get(lst_expr.indexOf("->")-1);
-
                 System.out.println("resultado: ~" + resultado.toUpperCase(Locale.ROOT));
+
             }else if(lst_expr.size()==4){
 
                 System.out.println("Modus Ponens: ");
