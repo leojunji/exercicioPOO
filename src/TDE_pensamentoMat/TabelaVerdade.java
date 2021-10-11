@@ -4,6 +4,12 @@ package TDE_pensamentoMat;
 public class TabelaVerdade {
 
 
+
+    /** vai pegar todas as variaveis e resultados e entao fazer uma tabela
+     * @param linhas -> quantidade de linhas da tabela
+     * @param colunas -> quantidade de colunas da tabela
+     * @param lst_valores -> lista com as variaveis e resultados que irao compor a tabela
+     * @return retorna uma tabela*/
     public static String[] atribuicaoValoresTabela(int linhas, int colunas, String[] lst_valores){
 
 
@@ -21,7 +27,6 @@ public class TabelaVerdade {
         for(int c = 0; c < colunas; c++){
             quebra_linha = coluna_inicio;
             for(int l = 0; l < linhas; l++){
-
                 tabela[quebra_linha] = lst_valores[i];
                 quebra_linha += colunas;
                 i += 1;
@@ -33,6 +38,12 @@ public class TabelaVerdade {
     }
 
 
+    /**vai atribuir os valores a uma variavel
+     * OBS:uma variavel compoe uma coluna dentro da tabela verdade
+     * @param variavel -> qual e a variavel
+     *@param quant_linhas -> quantidade de linhas
+     * @param passo -> de quanto em quanto sera a atribuicao dos valores true.(ex:2 em 2)
+     * @return uma lista com os valores da variavel*/
     public static String[] atribuicaoValoresVariavel(String variavel, int quant_linhas, int passo){
 
         boolean[] lst_valores = new boolean[quant_linhas-1];
@@ -66,7 +77,10 @@ public class TabelaVerdade {
     }
 
 
-        public static String[] compararTabelas(String[]primeira, String[]segunda, String comparacao){
+    /**vai comparar duas variaveis
+     * @param comparacao -> qual tipo de comparacao sera feita
+     * @return uma lista que correponde ao resultado da comparacao*/
+    public static String[] compararVariaveis(String[]primeira, String[]segunda, String comparacao){
 
         int linhas_tab = primeira.length;
         String[] resultado = new String[linhas_tab];
