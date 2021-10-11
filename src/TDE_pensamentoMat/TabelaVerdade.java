@@ -52,7 +52,6 @@ public class TabelaVerdade {
     }
 
 
-    //compara com "ou"
     public static boolean[] compararTabelas(boolean[]primeira, boolean[]segunda, String comparacao){
 
         int linhas_tab = primeira.length;
@@ -80,4 +79,5 @@ public class TabelaVerdade {
         return resultado;
 
     }
+
 }
