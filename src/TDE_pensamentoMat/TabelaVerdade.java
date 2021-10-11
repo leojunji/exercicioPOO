@@ -1,5 +1,6 @@
 package TDE_pensamentoMat;
 
+
 public class TabelaVerdade {
 
 
@@ -7,6 +8,7 @@ public class TabelaVerdade {
 
 
         int tab_tamanho = linhas*colunas;
+
 
         int[] tabela = new int[tab_tamanho];
 
@@ -19,7 +21,7 @@ public class TabelaVerdade {
             quebra_linha = coluna_inicio;
             for(int l = 0; l < linhas; l++){
                 tabela[quebra_linha] = valor;
-                quebra_linha += linhas;
+                quebra_linha += colunas;
                 valor += 1;
             }
             coluna_inicio += 1;
