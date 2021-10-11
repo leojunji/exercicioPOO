@@ -4,15 +4,16 @@ package TDE_pensamentoMat;
 public class TabelaVerdade {
 
 
-    public static int[] atribuicaoValoresTabela(int linhas, int colunas){
+    public static String[] atribuicaoValoresTabela(int linhas, int colunas, String[] lst_valores){
+
 
 
         int tab_tamanho = linhas*colunas;
 
 
-        int[] tabela = new int[tab_tamanho];
+        String[] tabela = new String[tab_tamanho];
 
-        int valor = 0;
+        int i = 0;
 
         int quebra_linha;
         int coluna_inicio = 0;
@@ -20,9 +21,10 @@ public class TabelaVerdade {
         for(int c = 0; c < colunas; c++){
             quebra_linha = coluna_inicio;
             for(int l = 0; l < linhas; l++){
-                tabela[quebra_linha] = valor;
+
+                tabela[quebra_linha] = lst_valores[i];
                 quebra_linha += colunas;
-                valor += 1;
+                i += 1;
             }
             coluna_inicio += 1;
         }
@@ -31,15 +33,16 @@ public class TabelaVerdade {
     }
 
 
-    public static boolean[] atribuicaoValoresVariavel(int quant_linhas, int passo){
+    public static String[] atribuicaoValoresVariavel(String variavel, int quant_linhas, int passo){
 
-        boolean[] tabela = new boolean[quant_linhas];
+        boolean[] lst_valores = new boolean[quant_linhas-1];
+        String[] tabela = new String[quant_linhas];
         int c = 0;
         int contador = 1;
         int auxiliar = passo;
 
-        while (c < quant_linhas){
-            tabela[c] = true;
+        while (c < quant_linhas-1){
+            lst_valores[c] = true;
             if(contador==passo){
                 c += auxiliar;
                 passo += auxiliar;
@@ -50,31 +53,42 @@ public class TabelaVerdade {
 
         }
 
+
+        tabela[0] = variavel;
+
+        int indice_lst = 0; //indice do lst_valores
+        for(int indice = 1;indice < quant_linhas;indice++){
+            tabela[indice] = String.valueOf(lst_valores[indice_lst]);
+            indice_lst += 1;
+        }
+
         return tabela;
     }
 
 
-    public static boolean[] compararTabelas(boolean[]primeira, boolean[]segunda, String comparacao){
+        public static String[] compararTabelas(String[]primeira, String[]segunda, String comparacao){
 
         int linhas_tab = primeira.length;
-        boolean[] resultado = new boolean[linhas_tab];
+        String[] resultado = new String[linhas_tab];
 
-        for (int indice = 0; indice < linhas_tab; indice++) {
+        resultado[0] = primeira[0] + comparacao + segunda[0];
+
+        for (int indice = 1; indice < linhas_tab; indice++) {
 
             if (comparacao.equals("^") | comparacao.equals("&")) {
-                resultado[indice] = primeira[indice] & segunda[indice];
+                resultado[indice] = String.valueOf(Boolean.parseBoolean(primeira[indice]) & Boolean.parseBoolean(segunda[indice]));
             }
 
             if (comparacao.equals("v") | comparacao.equals("or") | comparacao.equals("|")) {
-                resultado[indice] = primeira[indice] | segunda[indice];
+                resultado[indice] = String.valueOf(Boolean.parseBoolean(primeira[indice]) | Boolean.parseBoolean(segunda[indice]));
             }
 
             if (comparacao.equals("->")) {
-                resultado[indice] = !primeira[indice] | segunda[indice];
+                resultado[indice] = String.valueOf(!Boolean.parseBoolean(primeira[indice]) | Boolean.parseBoolean(segunda[indice]));
             }
 
             if (comparacao.equals("<->")) {
-                resultado[indice] = primeira[indice] == segunda[indice];
+                resultado[indice] = String.valueOf(Boolean.parseBoolean(primeira[indice]) == Boolean.parseBoolean(segunda[indice]));
             }
 
         }
