@@ -8,6 +8,7 @@ public class Venda{
     private float desconto = 0;
     private int quantidadeDeItens = 1;
     private float valor;
+    private float valor_comissao = 0; //valor da comissao com base no preço do produto
 
     public float getValor_comissao() {
         return valor_comissao;
@@ -16,8 +17,6 @@ public class Venda{
     public void setValor_comissao(float valor_comissao) {
         this.valor_comissao = valor_comissao;
     }
-
-    private float valor_comissao; //valor da comissao com base no preço do produto
 
 
     public Produto getProduto() {
@@ -54,7 +53,6 @@ public class Venda{
         // se com o desconto o valor não ficar menor que o custo de produção e se o produto estiver em promocao
         if ((valorVenda-desconto) >= produto.getValorCusto() && produto.isPromocao())
             this.desconto = desconto;
-        System.out.println("descont=-------: " + this.desconto);
 
 
         //--System.out.println("desconto --> " + this.desconto);
@@ -75,7 +73,7 @@ public class Venda{
 
     public void caucularComissao(){
 
-        float percentComissao = vendedor.getComissao();
+        float percentComissao = vendedor.getComissao();//percentual de comissao
 
         this.valor_comissao = (percentComissao*this.valor)/100;
 
@@ -92,8 +90,7 @@ public class Venda{
 
         System.out.println("VENDEDOR: ");
 
-        System.out.println("Nome: " + vendedor.getNome() + "\n"
-        + "Código: " + vendedor.getCodigo());
+        System.out.println("Nome: " + vendedor.getNome());
 
         System.out.println("====================");
 
@@ -104,7 +101,7 @@ public class Venda{
         + "Valor unitário: R$" + produto.getValorVenda() + "\n"
         + "Produto está em promoção: " + (produto.isPromocao() ? "sim" : "não") + "\n"
         + "Valor do desconto sobre cada produto: R$" + this.desconto + "\n"
-        + "Valor final da venda: R$" + this.valor);
+        + "Valor da venda: R$" + this.valor);
 
     }
 
