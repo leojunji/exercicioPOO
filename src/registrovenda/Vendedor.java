@@ -4,7 +4,7 @@ public class Vendedor {
 
     private String nome;
     private int codigo;
-    private static final float comissao = 15.0f;
+    private static final float comissao = 5.0f;//percentual
     private String endereco;
 
 
