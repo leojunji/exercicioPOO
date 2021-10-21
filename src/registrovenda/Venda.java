@@ -77,7 +77,7 @@ public class Venda{
 
         this.valor_comissao = (percentComissao*this.valor)/100;
 
-        // é necessário chamar o método efetuarDesconto() antes de cacularComissao();
+        // é necessário o desconto ter sido aplicado
         if (this.desconto>0 && produto.isPromocao())
             this.valor_comissao /= 2;
 
