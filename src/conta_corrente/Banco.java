@@ -1,7 +1,6 @@
 package conta_corrente;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Banco {
 
@@ -27,63 +26,42 @@ public class Banco {
 
     public static void main(String[] args) {
 
-        Scanner ler = new Scanner(System.in);
-        Cliente[] lst_clientes = new Cliente[3];
-        ContaCorrente[] lst_contas = new ContaCorrente[3];
-
         Banco banco = new Banco("MeuBanco&Cia.");
 
-        lst_clientes[0] = new Cliente("Maria", 123);
-        lst_clientes[1] = new Cliente("Jose", 456);
-        lst_clientes[2] = new Cliente("Joao", 789);
-
-        banco.ligarCliente(lst_clientes[0]);
-        banco.ligarCliente(lst_clientes[1]);
-        banco.ligarCliente(lst_clientes[2]);
-
-        lst_contas[0] = new ContaCorrente(123);
-        lst_contas[1] = new ContaCorrente(456);
-        lst_contas[2] = new ContaCorrente(789);
-
-        lst_contas[0].setCliente(lst_clientes[0]);
-        lst_contas[1].setCliente(lst_clientes[1]);
-        lst_contas[2].setCliente(lst_clientes[2]);
 
 
-        for(int c = 0;c < 3;c++){
+        banco.addCliente  (new Cliente ("Maria", 123));
 
-            System.out.println("Banco " + banco.getNome());
-            System.out.println("Cliente: " + lst_clientes[c].getNome());
+        banco.addCliente  (new Cliente ("Jose",  456));
 
-            System.out.print("Digite o valor do deposito: ");
-            double valorD = ler.nextDouble();
+        banco.addCliente  (new Cliente ("Joao",  789));
 
-            lst_contas[c].depositaValor(valorD);
 
-            System.out.print("Digite o valor do saque: ");
-            double valorS = ler.nextDouble();
 
-            lst_contas[c].retiraSaldo(valorS);
+        System.out.println("*** BANCO " + banco.nome + " - OPERACOES ***");
 
-            System.out.println();
+        for (Cliente cliente : banco.clientes) {//Iterador
 
+            System.out.println("\nCliente " + cliente.getNome() + " - operacoes");
+
+            cliente.opera();
 
         }
 
-        for(ContaCorrente dado : lst_contas){
-            dado.imprimeConta();
-            System.out.println();
+
+
+        System.out.println("\n*** BANCO " + banco.nome + "- CLIENTES ***");
+
+        for (Cliente cliente: banco.clientes) { //Iterador
+
+            cliente.getConta().imprimeConta();
+
         }
-
-
-
-
-
-
-
-
 
     }
+
+
+
 
 
 }

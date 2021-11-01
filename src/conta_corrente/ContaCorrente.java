@@ -16,17 +16,22 @@ public class ContaCorrente {
     }
 
     public double verificarSaldo(){
-        assert  this.saldo >= 0;
+
+        //se for maior que zero ele continua, se for menor que zero ele mostra a mensagem
+        assert  this.saldo > 0 : "Erro saldo negativo";
         return this.saldo;
     }
 
     public void depositaValor(double deposito){
+
         this.saldo += deposito;
+        verificarSaldo();
     }
 
-    public void retiraSaldo(double saque){
-        verificarSaldo();
+    public void retiraValor(double saque){
+
         this.saldo -= saque;
+        verificarSaldo();
     }
 
     public void imprimeConta(){
