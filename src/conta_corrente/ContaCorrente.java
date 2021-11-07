@@ -6,6 +6,10 @@ public class ContaCorrente {
     private double saldo;
     private Cliente cliente;
 
+    public int getNumero() {
+        return numero;
+    }
+
     public ContaCorrente(int numero) {
         this.numero = numero;
         this.saldo = 0.0d;
