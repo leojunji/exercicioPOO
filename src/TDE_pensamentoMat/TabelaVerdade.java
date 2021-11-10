@@ -42,7 +42,7 @@ public class TabelaVerdade {
      * OBS:uma variavel compoe uma coluna dentro da tabela verdade
      * @param variavel -> qual e a variavel
      *@param quant_linhas -> quantidade de linhas
-     * @param passo -> de quanto em quanto sera a atribuicao dos valores true.(ex:2 em 2)
+     * @param passo -> de quanto em quanto sera a atribuicao dos valores verdadeiros.(ex:2 em 2)
      * @return uma lista com os valores da variavel*/
     public static String[] atribuicaoValoresVariavel(String variavel, int quant_linhas, int passo){
 
@@ -108,6 +108,19 @@ public class TabelaVerdade {
         }
         return resultado;
 
+    }
+
+    public static String[] inverterValoresVariavel(String[] lista){
+
+        String[] lst_invertida = new String[lista.length];
+
+        lst_invertida[0] = lista[0];
+
+        for(int c = 1;c < lista.length;c++){
+            boolean valor = !Boolean.parseBoolean(lista[c]);
+            lst_invertida[c] = Boolean.toString(valor);
+        }
+        return lst_invertida;
     }
 
 }
