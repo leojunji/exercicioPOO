@@ -1,7 +1,0 @@
-João;123456789010;R. XV de Novembro, 556 - Centro, Curitiba - PR, 80020-310;1980;
-Leonardo;qwerty;Av. Pres. Kennedy, 4121 - Portão, Curitiba - PR, 80610-905;2016;
-mauricio silva;senha321;Rua rosa carvalho chaves, 595;2002;
-paulo;333;Rua dos palmares;2000;
-joca;12345;Rua dos palmares;2003;
-Leonardo Junji Mukuno;legal$23062003;Rua rosa carvalho chaves, 595;23/06/2003;
-leo;123;dadadada;dadada;

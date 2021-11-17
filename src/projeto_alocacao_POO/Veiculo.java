@@ -2,20 +2,60 @@ package projeto_alocacao_POO;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Veiculo {
+public class Veiculo implements Serializable {
 
+    private static final long serialVersionUID = 6529685098267757690L;
     protected String tipo;
     protected double valor_locacao;
     protected String descricao;
     protected String placa;
     protected String arquivo_veiculo;
     protected boolean disponibilidade;
+    protected boolean seguro;
+    protected String data_locacao;
+    protected int tempo_locacao;
+    protected double porcentagem_desconto;
 
-    public Veiculo(String arquivo_veiculo) {
+    public double getPorcentagem_desconto() {
+        return porcentagem_desconto;
+    }
 
-        this.arquivo_veiculo = arquivo_veiculo;
+    public void setPorcentagem_desconto(double porcentagem_desconto) {
+        this.porcentagem_desconto = porcentagem_desconto;
+    }
+
+    public String getData_locacao() {
+        return data_locacao;
+    }
+
+    public void setData_locacao(String data_locacao) {
+        this.data_locacao = data_locacao;
+    }
+
+    public int getTempo_locacao() {
+        return tempo_locacao;
+    }
+
+    public void setTempo_locacao(int tempo_locacao) {
+        this.tempo_locacao = tempo_locacao;
+    }
+
+    public boolean isSeguro() {
+        return seguro;
+    }
+
+    public void setSeguro(boolean seguro) {
+        this.seguro = seguro;
+    }
+
+    public Veiculo(double valor_locacao, String descricao, String placa) {
+        this.valor_locacao = valor_locacao;
+        this.descricao = descricao;
+        this.placa = placa;
+        this.disponibilidade = true;
     }
 
     public String getTipo() {
@@ -32,10 +72,6 @@ public class Veiculo {
 
     public void setArquivo_veiculo(String arquivo_veiculo) {
         this.arquivo_veiculo = arquivo_veiculo;
-    }
-
-    public boolean isDisponibilidade() {
-        return disponibilidade;
     }
 
     public void setDisponibilidade(boolean disponibilidade) {
@@ -66,48 +102,7 @@ public class Veiculo {
         this.placa = placa;
     }
 
-
-    public static boolean isVeiculoDiponivel(String tipo, String placa, String arquivo)  {
-
-        boolean veiculo_disponivel = false;
-
-
-        try {
-
-            ArrayList<String> dados_veiculos = BancoDados.readArquivo(arquivo);
-
-            for(String dados : dados_veiculos){
-
-
-                String[] valor = dados.split("~");
-
-
-                if(placa.equals(valor[1]) & tipo.equals(valor[2])){
-
-                    if(valor[0].equals("true")){
-                        return true;
-                    }else {
-                        return false;
-                    }
-
-                }
-
-            }
-        }
-        catch (FileNotFoundException fio){
-            JOptionPane.showMessageDialog(null, "O arquivo " + arquivo +
-                    " não foi localizado");
-            veiculo_disponivel = true;
-        }
-        catch (Exception e){
-
-            JOptionPane.showMessageDialog(null, "Erro ao acessar arquivo: " + arquivo);
-            veiculo_disponivel = true;
-            e.printStackTrace();
-        }
-
-        return veiculo_disponivel;
+    public boolean isDisponibilidade() {
+        return disponibilidade;
     }
-
-
 }

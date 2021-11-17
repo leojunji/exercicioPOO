@@ -2,32 +2,24 @@ package projeto_alocacao_POO;
 
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 //[nome, identificador, endereco, ano_nascimento,[tempo_alocacao^data_alocacao^seguro?true:false^valor_desconto]*]
 public class LocadoraVeiculos {
 
     private String nome_locadora;
     private String endereco_arquivo;
-    private Cliente cliente;
-    private double valor_seguro;
-    private double porcentagem_desconto;
-    String[] dados_veiculo;
-    String[] dados_cliente;
-    private int num_dias;
-    private String data_locacao;
-    private boolean seguro;
-
-    public LocadoraVeiculos(String[] dados_veiculo, String[] dados_cliente) {
-        this.dados_veiculo = dados_veiculo;
-        this.dados_cliente = dados_cliente;
-        this.valor_seguro = 0;
-        this.porcentagem_desconto = 0;
-        this.num_dias = 0;
-        this.data_locacao = "";
-    }
+    private Cliente cliente_nao_usadoi;
+    //------
+    private ArrayList<Cliente> cliente;
+    private ArrayList<Carro> carro;
+    private ArrayList<Moto> moto;
 
     public LocadoraVeiculos(String nome_locadora) {
         this.nome_locadora = nome_locadora;
+        this.cliente = new ArrayList<>();
+        this.carro = new ArrayList<>();
+        this.moto = new ArrayList<>();
     }
 
     public String getNome_locadora() {
@@ -46,111 +38,300 @@ public class LocadoraVeiculos {
         this.endereco_arquivo = endereco_arquivo;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Cliente getCliente_nao_usadoi() {
+        return cliente_nao_usadoi;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCliente_nao_usadoi(Cliente cliente_nao_usadoi) {
+        this.cliente_nao_usadoi = cliente_nao_usadoi;
+    }
+
+    public void addCliente(Cliente  cliente){
+        this.cliente.add(cliente);
+    }
+
+    public void addCarro(Carro  carro){
+        this.carro.add(carro);
+    }
+
+    public void addMoto(Moto moto){
+        this.moto.add(moto);
+    }
+
+    private ArrayList<Cliente> pegarDadosCliente(String arquivo_clientes){
+
+        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivo_clientes);
+
+        ArrayList<Cliente> dados_cliente = new ArrayList<>();
+
+        for(Object dado : dados_banco)
+            dados_cliente.add((Cliente)dado);
+
+        return dados_cliente;
     }
 
 
-    public boolean formularioLocao(){
+    /**
+     * retorna true se o cliente existir*/
+    public boolean clienteExistente(String nome, String identificador, String arquivo_clientes){
 
+        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivo_clientes);
 
-        try {
+        if(!dados_banco.isEmpty()) {
 
-            this.num_dias = VerificadoresTipo.verificarInteiro("Digitar o tempo de locação(MÍNIMO DE 1 DIA):\n" +
-                    "Deve ser uma valor positivo(+) maior ou igual a 1 ");
+            for (Object dado : dados_banco) {
 
-            this.data_locacao = JOptionPane.showInputDialog("Digitar a data de locacao: ");
-
-            this.seguro = VerificadoresTipo.verificarBoolean("Digtar: \n" +
-                    "true -- com seguro\n" +
-                    "false -- sem seguro\n");
-
-            this.porcentagem_desconto = VerificadoresTipo.verificarDouble("Digtar o valor do desconto(MÁXIMO 12%):\n" +
-                    "OBS: deve ser uma valor positivo(+) entre 0% e 12% ");
-
-            if(this.num_dias >= 1 & !data_locacao.equals("") & (this.porcentagem_desconto >=0 & this.porcentagem_desconto <= 12)) {
-
-                return true;
-
-            }else {
-
-                JOptionPane.showMessageDialog(null, "É necessário preencher todos os campos e de forma correta");
-                return false;
+                if (((Cliente)dado).getNome().equals(nome) & ((Cliente)dado).getIdentificador().equals(identificador)) {
+                    return true;
+                }
             }
 
-
-        }catch (Exception e){
-
-            JOptionPane.showMessageDialog(null, "Não foi possível realizar a locação");
-            return false;
         }
-    }
 
-
-    public boolean confirmarLocacao(){
-
-
-        if (seguro)
-            caucularSeguro();
-
-                            //num dias * (valor da diaria + valor diario do seguro)
-        double valor_total = num_dias * (Double.parseDouble(dados_veiculo[3]) + valor_seguro);
-
-        double valor_desconto = caucularDesconto(valor_total);
-
-        valor_total -= valor_desconto;
-
-        double tipo = VerificadoresTipo.verificarInteiro("Tipo de veículo: " + dados_veiculo[2] + "\n" +
-                "Descrição: " + dados_veiculo[4] + "\n" +
-                "Desconto: R$" + valor_desconto + "\n" +
-                "Seguro: R$" + valor_seguro + "\n" +
-                "Diária: " + dados_veiculo[3] + "\n" +
-                "Quantidade de dias: " + num_dias + "\n" +
-                "valor total: R$" + valor_total + "\n" +
-                "1  --  Confirmar locação \n" +
-                "2  --  Recusar locação \n");
-
-        System.out.println("");
-
-
-        if (tipo==1)
-        {
-            return true;
-        }else
-        {
-            return false;
-        }
+        return false;
 
     }
 
+    public void cadastrarCliente(String arquivo_clientes) {
 
-    public double caucularSeguro(){
+        this.cliente.addAll(pegarDadosCliente(arquivo_clientes));
 
-        if (dados_veiculo[2].equals("Carro")) {
+        ArrayList<Object> dados_clientes = new ArrayList<>();
 
-            valor_seguro = (0.05 * Double.parseDouble(dados_veiculo[3])) *
-                    (1 + Double.parseDouble(dados_veiculo[5].replaceAll(";", "")) / 20);
+        dados_clientes.addAll(this.cliente);
 
-        } else if(dados_veiculo[2].equals("Moto")) {
 
-            valor_seguro = 0.09 * Double.parseDouble(dados_veiculo[3]);
+        BancoDados.gravarArquivoBinario(dados_clientes, arquivo_clientes);
+
+
+
+    }
+
+    public void mostrarClientes(String arquivo_clientes){
+
+        ArrayList<Cliente> dados_cliente = pegarDadosCliente(arquivo_clientes);
+
+
+        for(Cliente dado : dados_cliente){
+
+            JOptionPane.showMessageDialog(null,"nome: " + dado.getNome() + "\n" +
+
+                    "data nascimento: " + dado.getData_nascimento() + "\n" +
+
+                    "identificador: " + dado.getIdentificador() + "\n" );//+
+
+                    //"tipo: " + dado.getCarro().getTipo());
+
 
 
         }
 
-        return valor_seguro;
 
     }
 
-    public double caucularDesconto(double valor_total){
 
-        double valor_desconto = (this.porcentagem_desconto/ 100) * valor_total;
+    //veiculo---------------------------------------------------------------------
 
-        return valor_desconto;
+
+    /**
+     * retorna true se o veiculo existir*/
+    public boolean veiculoExistente(String tipo, String placa, String arquivo_veiculos){
+
+        ArrayList<Object> dados_veiculo = BancoDados.lerArquivoBinario(arquivo_veiculos);
+
+        if(!dados_veiculo.isEmpty()) {
+
+            for (Object dado : dados_veiculo) {
+
+                System.out.println("((Veiculo)dado).getTipo(): " + ((Veiculo)dado).getTipo() + " User tipo: " + tipo);
+
+                System.out.println("((Veiculo)dado).getPlaca() " + ((Veiculo)dado).getPlaca() + " User placa: " + placa);
+
+                System.out.println("=====================================");
+
+                if(((Veiculo)dado).getTipo().equals(tipo) & ((Veiculo)dado).getPlaca().equals(placa)){
+                    return true;
+                }
+            }
+
+        }
+
+        return false;
+
+    }
+
+
+
+    /**
+     * se mostrar for true, ele mostra os veiculos dispoiniveis
+     * se for false ele mostra os veiculos indisponiveis ou alocados*/
+    public void mostrarCarros(String arquivo_veiculos, boolean mostrar){
+
+        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivo_veiculos);
+
+
+        for(Object dado : dados_banco) {
+
+            if(((Veiculo)dado).isDisponibilidade()==mostrar & ((Veiculo)dado).getTipo().equals("Carro")) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Tipo: " + ((Carro) dado).getTipo() + "\n" +
+
+                                "Locação: " + ((Carro) dado).getValor_locacao() + "\n" +
+
+                                "Placa: " + ((Carro) dado).getPlaca() + "\n" +
+
+                                "Descrição: " + ((Carro) dado).getDescricao() + "\n" +
+
+                                "Disponibilidade: " + ((Carro) dado).isDisponibilidade() + "\n" +
+
+                                "quantidade passageiros: " + ((Carro) dado).getQuant_passageiros() + "\n" +
+                                (!mostrar ?
+                                        ("Nome do cliente: " + ((Carro) dado).getCliente().getNome()) + "\n" +
+                                        "Identificador do cliente:" + ((Carro) dado).getCliente().getIdentificador(): ""));
+
+
+
+            }
+        }
+
+
+    }
+
+
+    //Carro--------------------------------------------------------------------------------------------------
+
+    public void cadastrarCarro(String arquivo_carros) {
+
+
+        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivo_carros);
+
+        dados_banco.addAll(this.carro);
+
+        BancoDados.gravarArquivoBinario(dados_banco, arquivo_carros);
+
+
+
+    }
+
+    public Carro configurarCarro(String arquivo_carros, String placa){
+
+        ArrayList<Object> dados_banco =  BancoDados.lerArquivoBinario(arquivo_carros);
+
+        Carro carro_dado=  null;
+
+
+        for(Object dado : dados_banco){
+            if(((Veiculo)dado).getPlaca().equals(placa))
+                carro_dado = ((Carro)dado);
+
+        }
+
+        return carro_dado;
+    }
+
+    //Moto--------------------------------------------------------------------------------------------------
+
+
+    public void cadastrarMoto(String arquivo_motos) {
+
+
+
+        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivo_motos);
+
+        dados_banco.addAll(this.moto);
+
+        BancoDados.gravarArquivoBinario(dados_banco, arquivo_motos);
+
+
+
+    }
+
+    public Moto configurarMoto(String arquivo_carros, String placa){
+
+        ArrayList<Object> dados_banco =  BancoDados.lerArquivoBinario(arquivo_carros);
+
+        Moto moto_dado = null;
+
+        for(Object dado : dados_banco){
+            if(((Veiculo)dado).getPlaca().equals(placa))
+                moto_dado = ((Moto)dado);
+
+        }
+
+        return moto_dado;
+    }
+
+    //locacao-------------------------------------
+
+    public void realizarLocacaoCarro(String arquivos_veiculo, Carro alocacao_carro){
+
+        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivos_veiculo);
+
+        ArrayList<Object> dados_atualizado = new ArrayList<>();
+
+        for(Object dado : dados_banco){
+
+            if(!((Veiculo)dado).getPlaca().equals(alocacao_carro.getPlaca()))
+                dados_atualizado.add(dado);
+        }
+
+        dados_atualizado.add(alocacao_carro);
+
+        BancoDados.gravarArquivoBinario(dados_atualizado, arquivos_veiculo);
+
+    }
+
+    public Cliente configurarCliente(String arquivo_cliente, String nome, String identificador){
+
+        ArrayList<Cliente> dados_clientes = pegarDadosCliente(arquivo_cliente);
+
+        Cliente cliente_dado = null;
+
+        for(Cliente dado : dados_clientes){
+            if(dado.getNome().equals(nome) & dado.getIdentificador().equals(identificador))
+                cliente_dado = dado;
+
+        }
+
+        return cliente_dado;
+    }
+
+    public double fazerCauculoLocacao(int tempo_locacao, double valor_locacao, double valor_seguro, double porcentagem_desconto){
+
+        double valor_total = (tempo_locacao * (valor_locacao + valor_seguro));
+
+        valor_total -= ((porcentagem_desconto/100)*valor_total);
+
+        return valor_total;
+
+    }
+
+    public double caucularSeguroCarro(double valor_locacao, int quant_passageiros){
+
+        return (0.05 * valor_locacao) * (1 + (float)quant_passageiros / 20);
+    }
+
+    public double caucularSeguroMoto(double valor_locacao) {
+
+        return 0.09 * valor_locacao ;
+    }
+
+
+    public boolean veiculoDisponivel(String arquivo_veiculos, String placa){
+
+        ArrayList<Object> dados_veiculo = BancoDados.lerArquivoBinario(arquivo_veiculos);
+
+        for(Object dado : dados_veiculo) {
+
+            if (((Veiculo) dado).getPlaca().equals(placa)) {
+
+                return ((Veiculo) dado).isDisponibilidade();
+
+            }
+        }
+
+        return false;
     }
 
 }

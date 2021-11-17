@@ -5,6 +5,21 @@ import java.util.Locale;
 
 public class VerificadoresTipo {
 
+    public static String verificarCampo(String message){
+
+        while(true){
+
+            String valor = JOptionPane.showInputDialog(message).strip();
+
+            if(valor.equals("")){
+                JOptionPane.showMessageDialog(null, "Esse campo não pode ficar em branco");
+            }else {
+                return valor;
+            }
+
+        }
+    }
+
     public static double verificarDouble(String message){
 
         while(true){
