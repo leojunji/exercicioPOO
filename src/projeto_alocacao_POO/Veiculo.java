@@ -1,9 +1,6 @@
 package projeto_alocacao_POO;
 
-import javax.swing.*;
-import java.io.FileNotFoundException;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Veiculo implements Serializable {
 
@@ -18,6 +15,15 @@ public class Veiculo implements Serializable {
     protected String data_locacao;
     protected int tempo_locacao;
     protected double porcentagem_desconto;
+    protected double valor_total_locacao;
+
+    public double getValor_total_locacao() {
+        return valor_total_locacao;
+    }
+
+    public void setValor_total_locacao(double valor_total_locacao) {
+        this.valor_total_locacao = valor_total_locacao;
+    }
 
     public double getPorcentagem_desconto() {
         return porcentagem_desconto;

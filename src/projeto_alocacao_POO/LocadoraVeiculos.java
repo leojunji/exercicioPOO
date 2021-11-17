@@ -162,43 +162,6 @@ public class LocadoraVeiculos {
 
 
 
-    /**
-     * se mostrar for true, ele mostra os veiculos dispoiniveis
-     * se for false ele mostra os veiculos indisponiveis ou alocados*/
-    public void mostrarCarros(String arquivo_veiculos, boolean mostrar){
-
-        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivo_veiculos);
-
-
-        for(Object dado : dados_banco) {
-
-            if(((Veiculo)dado).isDisponibilidade()==mostrar & ((Veiculo)dado).getTipo().equals("Carro")) {
-
-                JOptionPane.showMessageDialog(null,
-                        "Tipo: " + ((Carro) dado).getTipo() + "\n" +
-
-                                "Locação: " + ((Carro) dado).getValor_locacao() + "\n" +
-
-                                "Placa: " + ((Carro) dado).getPlaca() + "\n" +
-
-                                "Descrição: " + ((Carro) dado).getDescricao() + "\n" +
-
-                                "Disponibilidade: " + ((Carro) dado).isDisponibilidade() + "\n" +
-
-                                "quantidade passageiros: " + ((Carro) dado).getQuant_passageiros() + "\n" +
-                                (!mostrar ?
-                                        ("Nome do cliente: " + ((Carro) dado).getCliente().getNome()) + "\n" +
-                                        "Identificador do cliente:" + ((Carro) dado).getCliente().getIdentificador(): ""));
-
-
-
-            }
-        }
-
-
-    }
-
-
     //Carro--------------------------------------------------------------------------------------------------
 
     public void cadastrarCarro(String arquivo_carros) {
@@ -232,6 +195,23 @@ public class LocadoraVeiculos {
 
     //Moto--------------------------------------------------------------------------------------------------
 
+    public void realizarLocacaoMoto(String arquivos_veiculo, Moto alocacao_moto){
+
+        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivos_veiculo);
+
+        ArrayList<Object> dados_atualizado = new ArrayList<>();
+
+        for(Object dado : dados_banco){
+
+            if(!((Veiculo)dado).getPlaca().equals(alocacao_moto.getPlaca()))
+                dados_atualizado.add(dado);
+        }
+
+        dados_atualizado.add(alocacao_moto);
+
+        BancoDados.gravarArquivoBinario(dados_atualizado, arquivos_veiculo);
+
+    }
 
     public void cadastrarMoto(String arquivo_motos) {
 
