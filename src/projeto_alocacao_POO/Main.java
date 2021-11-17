@@ -303,6 +303,9 @@ public class Main  implements Serializable {
 
                                         }
 
+                                    }else {
+                                        JOptionPane.showMessageDialog(null, "A ALOCAÇÃO NÃO FOI REALIZADA:\n" +
+                                                "Digite os valores corretamente");
                                     }
                                 }else{
                                     JOptionPane.showMessageDialog(null, "Esse veículo não está está disponivel para alocação");
