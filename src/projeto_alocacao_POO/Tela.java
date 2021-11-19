@@ -34,7 +34,7 @@ public class Tela {
 
                                 "=================================================================" + "\n" +
                                 (mostrar ?
-                                        ( "Valor total da locaçãao: " + ((Carro) dado).getValor_total_locacao() + "\n"  +
+                                        ( "Valor total da locação: " + ((Carro) dado).getValor_total_locacao() + "\n"  +
 
                                                 "Tempo da Locação: " + ((Carro) dado).getTempo_locacao() + " dia(s)\n" +
 
@@ -78,7 +78,7 @@ public class Tela {
 
                                 "=================================================================" + "\n" +
                                 (mostrar ?
-                                        ("Valor total da locaçãao: " + ((Moto) dado).getValor_total_locacao() + "\n"+
+                                        ("Valor total da locação: " + ((Moto) dado).getValor_total_locacao() + "\n"+
 
                                                 "Tempo da Locação: " + ((Moto) dado).getTempo_locacao() + " dia(s)\n" +
 

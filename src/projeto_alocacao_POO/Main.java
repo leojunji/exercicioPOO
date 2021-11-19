@@ -2,6 +2,7 @@ package projeto_alocacao_POO;
 
 import javax.swing.*;
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,6 +16,8 @@ public class Main  implements Serializable {
         String arquivo_clientes = "cliente.dados";
 
         String arquivo_veiculos = "veiculo.dados";
+
+        DecimalFormat df = new DecimalFormat("#0.00");
 
         LocadoraVeiculos locadoraVeiculos = new LocadoraVeiculos("sbc");
 
@@ -225,19 +228,18 @@ public class Main  implements Serializable {
                                             if (carro.isSeguro())
                                                 valor_seguro = locadoraVeiculos.caucularSeguroCarro(carro.getValor_locacao(), carro.getQuant_passageiros());
 
-
                                             double valor_total = locadoraVeiculos.fazerCauculoLocacao(carro.getTempo_locacao(),
                                                     carro.getValor_locacao(), valor_seguro, carro.getPorcentagem_desconto());
 
                                             int resp = VerificadoresTipo.verificarInteiro("LOCAÇÃO:\n" +
                                                     "USUÁRIO: " + carro.getCliente().getNome() + "\n" +
                                                     "IDENTIFICADOR: " + carro.getCliente().getIdentificador() + "\n" +
-                                                    "VALOR SEGURO: R$" + valor_seguro + "\n" +
+                                                    "VALOR SEGURO: R$" + df.format(valor_seguro) + "\n" +
                                                     "PORCENTAGEM DESCONTO: " + carro.getPorcentagem_desconto() + "%\n" +
                                                     "TEMPO DE LOCAÇÃO: " + carro.getTempo_locacao() + "\n" +
-                                                    "MOTO: " + carro.getDescricao() + "\n" +
+                                                    "CARRO: " + carro.getDescricao() + "\n" +
                                                     "VALOR DIÁRIA: R$" + carro.getValor_locacao() + "\n" +
-                                                    "VALOR TOTAL: R$" + valor_total + "\n" +
+                                                    "VALOR TOTAL: R$" + df.format(valor_total) + "\n" +
                                                     "DIGITAR: \n" +
                                                     "1 -- ACEITAR\n" +
                                                     "2 -- RECUSAR");
@@ -245,7 +247,7 @@ public class Main  implements Serializable {
                                             if (resp == 1) {
 
                                                 carro.setDisponibilidade(false);
-                                                carro.setValor_total_locacao(valor_total);
+                                                carro.setValor_total_locacao(Double.parseDouble(df.format(valor_total)));
                                                 locadoraVeiculos.realizarLocacaoCarro(arquivo_veiculos, carro);
                                                 JOptionPane.showMessageDialog(null, "LOCAÇÃO FEITA");
 
@@ -278,15 +280,17 @@ public class Main  implements Serializable {
                                             double valor_total = locadoraVeiculos.fazerCauculoLocacao(moto.getTempo_locacao(),
                                                     moto.getValor_locacao(), valor_seguro, moto.getPorcentagem_desconto());
 
+
+
                                             int resp = VerificadoresTipo.verificarInteiro("LOCAÇÃO:\n" +
                                                     "USUÁRIO: " + moto.getCliente().getNome() + "\n" +
                                                     "IDENTIFICADOR: " + moto.getCliente().getIdentificador() + "\n" +
-                                                    "VALOR SEGURO: R$" + valor_seguro + "\n" +
+                                                    "VALOR SEGURO: R$" + df.format(valor_seguro) + "\n" +
                                                     "PORCENTAGEM DESCONTO: " + moto.getPorcentagem_desconto() + "%\n" +
                                                     "TEMPO DE LOCAÇÃO: " + moto.getTempo_locacao() + "DIA(S)\n" +
                                                     "MOTO: " + moto.getDescricao() + "\n" +
                                                     "VALOR DIÁRIA: R$" + moto.getValor_locacao() + "\n" +
-                                                    "VALOR TOTAL: R$" + valor_total + "\n" +
+                                                    "VALOR TOTAL: R$" + df.format(valor_total) + "\n" +
                                                     "DIGITAR: \n" +
                                                     "1 -- ACEITAR\n" +
                                                     "2 -- RECUSAR");
@@ -294,7 +298,7 @@ public class Main  implements Serializable {
                                             if (resp == 1) {
 
                                                 moto.setDisponibilidade(false);
-                                                moto.setValor_total_locacao(valor_total);
+                                                moto.setValor_total_locacao(Double.parseDouble(df.format(valor_total)));
                                                 locadoraVeiculos.realizarLocacaoMoto(arquivo_veiculos, moto);
                                                 JOptionPane.showMessageDialog(null, "LOCAÇÃO FEITA");
                                             } else {
