@@ -24,12 +24,6 @@ public class Tela {
 
                                 "Locação: " + ((Carro) dado).getValor_locacao() + "\n" +
 
-                                "Tempo da Locação: " + ((Carro) dado).getTempo_locacao() + "\n" +
-
-                                "Tem seguro: " + ((Carro) dado).isSeguro() + "\n" +
-
-                                "Desconto: " + ((Carro) dado).getPorcentagem_desconto() + "%\n" +
-
                                 "Placa: " + ((Carro) dado).getPlaca() + "\n" +
 
                                 "Descrição: " + ((Carro) dado).getDescricao() + "\n" +
@@ -37,9 +31,19 @@ public class Tela {
                                 "Disponibilidade: " + ((Carro) dado).isDisponibilidade() + "\n" +
 
                                 "quantidade passageiros: " + ((Carro) dado).getQuant_passageiros() + "\n" +
+
+                                "=================================================================" + "\n" +
                                 (mostrar ?
                                         ( "Valor total da locaçãao: " + ((Carro) dado).getValor_total_locacao() + "\n"  +
+
+                                                "Tempo da Locação: " + ((Carro) dado).getTempo_locacao() + " dia(s)\n" +
+
+                                                "Tem seguro: " + ((Carro) dado).isSeguro() + "\n" +
+
+                                                "Desconto: " + ((Carro) dado).getPorcentagem_desconto() + "%\n" +
+
                                                 "Nome do cliente: " + ((Carro) dado).getCliente().getNome()) + "\n" +
+
                                                 "Identificador do cliente:" + ((Carro) dado).getCliente().getIdentificador(): ""));
 
 
@@ -64,12 +68,6 @@ public class Tela {
 
                                 "Locação: " + ((Moto) dado).getValor_locacao() + "\n" +
 
-                                "Tempo da Locação: " + ((Moto) dado).getTempo_locacao() + "\n" +
-
-                                "Tem seguro: " + ((Moto) dado).isSeguro() + "\n" +
-
-                                "Desconto: " + ((Moto) dado).getPorcentagem_desconto() + "%\n" +
-
                                 "Placa: " + ((Moto) dado).getPlaca() + "\n" +
 
                                 "Descrição: " + ((Moto) dado).getDescricao() + "\n" +
@@ -78,9 +76,18 @@ public class Tela {
 
                                 "partida eletrica: " + ((Moto) dado).isPartida_eletrica() + "\n" +
 
+                                "=================================================================" + "\n" +
                                 (mostrar ?
-                                        ("Valor total da locaçãao: " + ((Moto) dado).getValor_total_locacao() + "\n"
-                                                + "Nome do cliente: " + ((Moto)dado).getCliente().getNome() + "\n" +
+                                        ("Valor total da locaçãao: " + ((Moto) dado).getValor_total_locacao() + "\n"+
+
+                                                "Tempo da Locação: " + ((Moto) dado).getTempo_locacao() + " dia(s)\n" +
+
+                                                "Tem seguro: " + ((Moto) dado).isSeguro() + "\n" +
+
+                                                "Desconto: " + ((Moto) dado).getPorcentagem_desconto() + "%\n" +
+
+                                                "Nome do cliente: " + ((Moto)dado).getCliente().getNome() + "\n" +
+
                                                 "Identificador do cliente:" + ((Moto)dado).getCliente().getIdentificador()) : ""));
 
 
