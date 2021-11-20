@@ -29,22 +29,6 @@ public class Cliente implements Serializable {
         this.carro = carro;
     }
 
-    public Moto getMoto() {
-        return moto;
-    }
-
-    public void setMoto(Moto moto) {
-        this.moto = moto;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -57,24 +41,11 @@ public class Cliente implements Serializable {
         return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        this.endereco = endereço;
-    }
-
     public String getData_nascimento() {
         return data_nascimento;
-    }
-
-    public void setData_nascimento(String data_nascimento) {
-        this.data_nascimento = data_nascimento;
     }
 
     public String getIdentificador() {
         return identificador;
     }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
-    }
-
 }

@@ -33,10 +33,6 @@ public class Veiculo implements Serializable {
         this.porcentagem_desconto = porcentagem_desconto;
     }
 
-    public String getData_locacao() {
-        return data_locacao;
-    }
-
     public void setData_locacao(String data_locacao) {
         this.data_locacao = data_locacao;
     }
@@ -72,14 +68,6 @@ public class Veiculo implements Serializable {
         this.tipo = tipo;
     }
 
-    public String getArquivo_veiculo() {
-        return arquivo_veiculo;
-    }
-
-    public void setArquivo_veiculo(String arquivo_veiculo) {
-        this.arquivo_veiculo = arquivo_veiculo;
-    }
-
     public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
     }
@@ -88,24 +76,12 @@ public class Veiculo implements Serializable {
         return valor_locacao;
     }
 
-    public void setValor_locacao(double valor_locacao) {
-        this.valor_locacao = valor_locacao;
-    }
-
     public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public String getPlaca() {
         return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
     }
 
     public boolean isDisponibilidade() {

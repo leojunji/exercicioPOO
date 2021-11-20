@@ -358,8 +358,6 @@ public class Main  implements Serializable {
                     break;
                 }
                 case 8: {
-                    //JOptionPane.showMessageDialog(null,
-                            //" Saindo...");
                     System.exit(0);
                 }
                 default: {
