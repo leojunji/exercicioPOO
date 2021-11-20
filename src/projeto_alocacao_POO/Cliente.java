@@ -1,15 +1,15 @@
 package projeto_alocacao_POO;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Cliente implements Serializable {
 
+
+    private static final long serialVersionUID = 6529985098267757690L;
     private String nome;
     private String endereco ;
     private String data_nascimento;
     private String identificador;
-    private ArrayList<Object> cliente;
     private Carro carro; //locadora.getCarro().getTipo() ...
     private Moto moto;
 
@@ -18,16 +18,8 @@ public class Cliente implements Serializable {
         this.endereco = endereco;
         this.data_nascimento = data_nascimento;
         this.identificador = identificador;
-        cliente = new ArrayList<>();
     }
 
-    public ArrayList<Object> getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(ArrayList<Object> cliente) {
-        this.cliente = cliente;
-    }
 
     public Carro getCarro() {
         return carro;

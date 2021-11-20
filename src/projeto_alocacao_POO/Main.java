@@ -1,9 +1,8 @@
 package projeto_alocacao_POO;
 
 import javax.swing.*;
-import java.io.*;
+import java.io.Serializable;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main  implements Serializable {
@@ -50,8 +49,6 @@ public class Main  implements Serializable {
 
                     try {
 
-                        ArrayList<String> lst_veiculo = new ArrayList<>();
-
 
                         int resp = VerificadoresTipo.verificarInteiro("Tipo de veículo: \n\n" +
                                 "1  --  carro \n" +
@@ -81,9 +78,9 @@ public class Main  implements Serializable {
 
                                    //double valor_locacao, String descricao, String placa, int quant_passageiros
                                    //[tipo0, placa1, locacao2, descricao3, passageiros4]
-                                   locadoraVeiculos.addCarro(new Carro(valor_locacao, descriçao, placa, quant_passageiros));
 
-                                   locadoraVeiculos.cadastrarCarro(arquivo_veiculos);
+                                   locadoraVeiculos.cadastrarCarro(arquivo_veiculos,
+                                           new Carro(valor_locacao, descriçao, placa, quant_passageiros));
 
 
                                }else {
@@ -92,10 +89,8 @@ public class Main  implements Serializable {
                                            "true  --  com partida eletrica\n" +
                                            "false -- sem partida eletrica");
 
-                                   locadoraVeiculos.addMoto(new Moto(valor_locacao, descriçao, placa, partida_eletrica));
 
-
-                                   locadoraVeiculos.cadastrarMoto(arquivo_veiculos);
+                                   locadoraVeiculos.cadastrarMoto(arquivo_veiculos, new Moto(valor_locacao, descriçao, placa, partida_eletrica));
                                }
 
 
@@ -144,11 +139,12 @@ public class Main  implements Serializable {
 
                         } else {
 
-                            locadoraVeiculos.addCliente(new Cliente(nome, endereco, data_nascimento, identificador));
+                            //locadoraVeiculos.addCliente(new Cliente(nome, endereco, data_nascimento, identificador));
 
-                            locadoraVeiculos.cadastrarCliente(arquivo_clientes);
+                            locadoraVeiculos.cadastrarCliente(arquivo_clientes,
+                                    new Cliente(nome, endereco, data_nascimento, identificador));
 
-                            JOptionPane.showMessageDialog(null, "Cadastro ralizado com sucesso");
+                            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
 
 
                         }
@@ -157,6 +153,7 @@ public class Main  implements Serializable {
 
                         JOptionPane.showMessageDialog(null,
                                 "O cadastro não foi realizado");
+                        e.printStackTrace();
                     }
 
                     break;
@@ -344,7 +341,7 @@ public class Main  implements Serializable {
                 }
                 case 5: {
                     JOptionPane.showMessageDialog(null, "Listagem de clientes\n");
-                    locadoraVeiculos.mostrarClientes(arquivo_clientes);
+                    Tela.mostrarClientes(arquivo_clientes);
                     break;
                 }
                 case 6: {

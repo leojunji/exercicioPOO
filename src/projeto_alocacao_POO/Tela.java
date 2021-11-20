@@ -97,4 +97,25 @@ public class Tela {
 
     }
 
+
+    public static void mostrarClientes(String arquivo_clientes){
+
+        ArrayList<Object> dados_cliente = BancoDados.lerArquivoBinario(arquivo_clientes);
+
+
+        for(Object dado : dados_cliente){
+
+            JOptionPane.showMessageDialog(null,"nome: " + ((Cliente)dado).getNome() + "\n" +
+
+                    "Data nascimento: " + ((Cliente)dado).getData_nascimento() + "\n" +
+
+                    "Identificador: " + ((Cliente)dado).getIdentificador() + "\n" +
+
+                    "Endereço: " + ((Cliente)dado).getEndereço() + "\n" );
+
+        }
+
+
+    }
+
 }
