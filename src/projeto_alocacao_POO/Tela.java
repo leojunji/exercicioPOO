@@ -7,10 +7,8 @@ import java.util.ArrayList;
 public class Tela {
 
 
-    /**
-     * se mostrar for true, ele mostra os veiculos dispoiniveis
-     * se for false ele mostra os veiculos indisponiveis ou alocados*/
-    public static void mostrarCarros(String arquivo_veiculos, boolean disponibilidade, boolean mostrar){
+
+    public static void mostrarCarros(String arquivo_veiculos, boolean disponibilidade, boolean mostrar_alocadores){
 
         ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivo_veiculos);
 
@@ -33,7 +31,7 @@ public class Tela {
                                 "quantidade passageiros: " + ((Carro) dado).getQuant_passageiros() + "\n" +
 
                                 "=================================================================" + "\n" +
-                                (mostrar ?
+                                (mostrar_alocadores ?
                                         ( "Valor total da locação: " + ((Carro) dado).getValor_total_locacao() + "\n"  +
 
                                                 "Tempo da Locação: " + ((Carro) dado).getTempo_locacao() + " dia(s)\n" +
@@ -54,7 +52,7 @@ public class Tela {
     }
 
 
-    public static void mostrarMotos(String arquivo_veiculos , boolean disponibilidade, boolean mostrar){
+    public static void mostrarMotos(String arquivo_veiculos , boolean disponibilidade, boolean mostrar_alocadores){
 
         ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivo_veiculos);
 
@@ -77,7 +75,7 @@ public class Tela {
                                 "partida eletrica: " + ((Moto) dado).isPartida_eletrica() + "\n" +
 
                                 "=================================================================" + "\n" +
-                                (mostrar ?
+                                (mostrar_alocadores ?
                                         ("Valor total da locação: " + ((Moto) dado).getValor_total_locacao() + "\n"+
 
                                                 "Tempo da Locação: " + ((Moto) dado).getTempo_locacao() + " dia(s)\n" +

@@ -73,4 +73,30 @@ public class VerificadoresTipo {
         }
 
     }
+
+    public static String verificarData(String message){
+
+
+        while(true){
+
+            String valor = JOptionPane.showInputDialog(message).strip();
+
+            String[] data = valor.split("");
+
+            try {
+
+                if (!data[2].equals("/") | !data[5].equals("/") | data.length < 10) {
+                    JOptionPane.showMessageDialog(null, "Digite uma data no padrão (ex: DD/MM/AAAA)");
+                } else {
+                    return valor;
+                }
+            }catch (Exception e){
+
+                JOptionPane.showMessageDialog(null, "Digite uma data no padrão (ex: DD/MM/AAAA)");
+
+            }
+
+        }
+
+    }
 }

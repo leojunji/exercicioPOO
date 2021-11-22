@@ -9,7 +9,6 @@ public class Veiculo implements Serializable {
     protected double valor_locacao;
     protected String descricao;
     protected String placa;
-    protected String arquivo_veiculo;
     protected boolean disponibilidade;
     protected boolean seguro;
     protected String data_locacao;

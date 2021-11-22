@@ -14,14 +14,17 @@ public class LocadoraVeiculos implements Serializable {
         this.nome_locadora = nome_locadora;
     }
 
+    public String getNome_locadora() {
+        return nome_locadora;
+    }
 
+
+    //cliente----------------------------------------------------
     /**
      * retorna true se o cliente existir*/
     public boolean clienteExistente(String nome, String identificador, String arquivo_clientes){
 
         ArrayList<Object> banco_dados = BancoDados.lerArquivoBinario(arquivo_clientes);
-
-        System.out.println("banco dados: " + banco_dados);
 
         if(!banco_dados.isEmpty()) {
 
@@ -53,7 +56,7 @@ public class LocadoraVeiculos implements Serializable {
 
     }
 
-    public Cliente configurarCliente(String arquivo_cliente, String nome, String identificador){
+    public Cliente pegarDadoCliente(String arquivo_cliente, String nome, String identificador){
 
         ArrayList<Object> dados_clientes = BancoDados.lerArquivoBinario(arquivo_cliente);
 
@@ -70,6 +73,22 @@ public class LocadoraVeiculos implements Serializable {
 
 
     //veiculo---------------------------------------------------------------------
+
+    public Veiculo pegarDadoVeiculo(String arquivo_carros, String placa){
+
+        ArrayList<Object> dados_banco =  BancoDados.lerArquivoBinario(arquivo_carros);
+
+        Veiculo veiculo_dado=  null;
+
+
+        for(Object dado : dados_banco){
+            if(((Veiculo)dado).getPlaca().equals(placa))
+                veiculo_dado = ((Veiculo)dado);
+
+        }
+
+        return veiculo_dado;
+    }
 
     public boolean veiculoDisponivel(String arquivo_veiculos, String placa){
 
@@ -97,9 +116,11 @@ public class LocadoraVeiculos implements Serializable {
 
             for (Object dado : dados_veiculo) {
 
-                System.out.println("((Veiculo)dado).getTipo(): " + ((Veiculo)dado).getTipo() + " User tipo: " + tipo);
+                System.out.println("veiculoExistente()");
 
-                System.out.println("((Veiculo)dado).getPlaca() " + ((Veiculo)dado).getPlaca() + " User placa: " + placa);
+                System.out.println("((Veiculo)dado).getTipo(): " + ((Veiculo)dado).getTipo() + " == User tipo: " + tipo);
+
+                System.out.println("((Veiculo)dado).getPlaca() " + ((Veiculo)dado).getPlaca() + " == User placa: " + placa);
 
                 System.out.println("=====================================");
 
@@ -133,22 +154,6 @@ public class LocadoraVeiculos implements Serializable {
 
     }
 
-    public Carro configurarCarro(String arquivo_carros, String placa){
-
-        ArrayList<Object> dados_banco =  BancoDados.lerArquivoBinario(arquivo_carros);
-
-        Carro carro_dado=  null;
-
-
-        for(Object dado : dados_banco){
-            if(((Veiculo)dado).getPlaca().equals(placa))
-                carro_dado = ((Carro)dado);
-
-        }
-
-        return carro_dado;
-    }
-
     //Moto--------------------------------------------------------------------------------------------------
 
     public void cadastrarMoto(String arquivo_motos, Moto moto) {
@@ -165,21 +170,6 @@ public class LocadoraVeiculos implements Serializable {
 
 
 
-    }
-
-    public Moto configurarMoto(String arquivo_carros, String placa){
-
-        ArrayList<Object> dados_banco =  BancoDados.lerArquivoBinario(arquivo_carros);
-
-        Moto moto_dado = null;
-
-        for(Object dado : dados_banco){
-            if(((Veiculo)dado).getPlaca().equals(placa))
-                moto_dado = ((Moto)dado);
-
-        }
-
-        return moto_dado;
     }
 
     //locacao-------------------------------------
@@ -207,6 +197,10 @@ public class LocadoraVeiculos implements Serializable {
         ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivos_veiculo);
 
         ArrayList<Object> dados_atualizado = new ArrayList<>();
+
+        //dados_kawsaki --> dados_banco
+
+        //dados_kawsaki + dados_alocador(Cliente) --> dados_atualizado
 
         dados_atualizado.add(alocacao_moto);
 
