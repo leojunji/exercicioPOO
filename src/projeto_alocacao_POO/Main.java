@@ -8,7 +8,7 @@ public class Main  implements Serializable {
 
     public static void main(String[] args) throws Exception {
 
-        String firstOp;
+
         int opcao;
         String arquivo_clientes = "cliente.dados";
 
@@ -21,7 +21,7 @@ public class Main  implements Serializable {
         JOptionPane.showMessageDialog(null, "LOCADORA: " +  locadoraVeiculos.getNome_locadora());
         while(true) {
 
-            firstOp = JOptionPane.showInputDialog("Selecione uma opção: \n\n" +
+            opcao = VerificadoresTipo.verificarInteiro("Selecione uma opção: \n\n" +
                     "1  --  Cadastrar veículo\n" +
                     "2  --  Cadastrar Cliente\n" +
                     "3  --  Locação de veículos\n" +
@@ -31,23 +31,14 @@ public class Main  implements Serializable {
                     "7  --  Listagem de veículos disponíveis\n" +
                     "8  --  Sair\n");
 
-            try
-            {
 
-                opcao = Integer.parseInt(firstOp);
-            }
-            catch (Exception e)
-            {
-
-                opcao = 0;
-            }
             switch (opcao) {
 
                 case 1: {
 
                     try {
 
-                            JOptionPane.showMessageDialog(null, "CADASTRAR VEÍCULO");
+                        JOptionPane.showMessageDialog(null, "CADASTRAR VEÍCULO");
 
                         int resp = VerificadoresTipo.verificarInteiro("Tipo de veículo: \n\n" +
                                 "1  --  carro \n" +
@@ -101,6 +92,7 @@ public class Main  implements Serializable {
 
 
                     }catch (Exception e){
+
                         JOptionPane.showMessageDialog(null,
                                 "É necessário preencher todos os campos corretamente");
                     }

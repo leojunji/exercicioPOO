@@ -10,7 +10,7 @@ public class Tela {
 
     public static void mostrarCarros(String arquivo_veiculos, boolean disponibilidade, boolean mostrar_alocadores){
 
-        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivo_veiculos);
+        ArrayList<Object> dados_banco = BancoDados.lerArquivo(arquivo_veiculos);
 
 
         for(Object dado : dados_banco) {
@@ -54,7 +54,7 @@ public class Tela {
 
     public static void mostrarMotos(String arquivo_veiculos , boolean disponibilidade, boolean mostrar_alocadores){
 
-        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivo_veiculos);
+        ArrayList<Object> dados_banco = BancoDados.lerArquivo(arquivo_veiculos);
 
 
         for(Object dado : dados_banco) {
@@ -98,7 +98,7 @@ public class Tela {
 
     public static void mostrarClientes(String arquivo_clientes){
 
-        ArrayList<Object> dados_cliente = BancoDados.lerArquivoBinario(arquivo_clientes);
+        ArrayList<Object> dados_cliente = BancoDados.lerArquivo(arquivo_clientes);
 
 
         for(Object dado : dados_cliente){

@@ -8,7 +8,7 @@ public class BancoDados {
     //-----------------novos métodos
 
 
-    public static void gravarArquivoBinario(ArrayList<Object> lista, String nomeArq) {
+    public static void gravarArquivo(ArrayList<Object> lista, String nomeArq) {
         File arq = new File(nomeArq);
         try {
             ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(arq));
@@ -20,7 +20,7 @@ public class BancoDados {
         }
     }
 
-    public static ArrayList<Object> lerArquivoBinario(String nomeArq) {
+    public static ArrayList<Object> lerArquivo(String nomeArq) {
         ArrayList<Object> lista = new ArrayList();
         try {
             File arq = new File(nomeArq);

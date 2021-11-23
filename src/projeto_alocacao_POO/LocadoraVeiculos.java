@@ -24,7 +24,7 @@ public class LocadoraVeiculos implements Serializable {
      * retorna true se o cliente existir*/
     public boolean clienteExistente(String nome, String identificador, String arquivo_clientes){
 
-        ArrayList<Object> banco_dados = BancoDados.lerArquivoBinario(arquivo_clientes);
+        ArrayList<Object> banco_dados = BancoDados.lerArquivo(arquivo_clientes);
 
         if(!banco_dados.isEmpty()) {
 
@@ -47,10 +47,10 @@ public class LocadoraVeiculos implements Serializable {
 
         dados_clientes.add(cliente);
 
-        dados_clientes.addAll(BancoDados.lerArquivoBinario(arquivo_clientes));
+        dados_clientes.addAll(BancoDados.lerArquivo(arquivo_clientes));
 
 
-        BancoDados.gravarArquivoBinario(dados_clientes, arquivo_clientes);
+        BancoDados.gravarArquivo(dados_clientes, arquivo_clientes);
 
 
 
@@ -58,7 +58,7 @@ public class LocadoraVeiculos implements Serializable {
 
     public Cliente pegarDadoCliente(String arquivo_cliente, String nome, String identificador){
 
-        ArrayList<Object> dados_clientes = BancoDados.lerArquivoBinario(arquivo_cliente);
+        ArrayList<Object> dados_clientes = BancoDados.lerArquivo(arquivo_cliente);
 
         Cliente cliente_dado = null;
 
@@ -76,7 +76,7 @@ public class LocadoraVeiculos implements Serializable {
 
     public Veiculo pegarDadoVeiculo(String arquivo_carros, String placa){
 
-        ArrayList<Object> dados_banco =  BancoDados.lerArquivoBinario(arquivo_carros);
+        ArrayList<Object> dados_banco =  BancoDados.lerArquivo(arquivo_carros);
 
         Veiculo veiculo_dado=  null;
 
@@ -92,7 +92,7 @@ public class LocadoraVeiculos implements Serializable {
 
     public boolean veiculoDisponivel(String arquivo_veiculos, String placa){
 
-        ArrayList<Object> dados_veiculo = BancoDados.lerArquivoBinario(arquivo_veiculos);
+        ArrayList<Object> dados_veiculo = BancoDados.lerArquivo(arquivo_veiculos);
 
         for(Object dado : dados_veiculo) {
 
@@ -110,7 +110,7 @@ public class LocadoraVeiculos implements Serializable {
      * retorna true se o veiculo existir*/
     public boolean veiculoExistente(String tipo, String placa, String arquivo_veiculos){
 
-        ArrayList<Object> dados_veiculo = BancoDados.lerArquivoBinario(arquivo_veiculos);
+        ArrayList<Object> dados_veiculo = BancoDados.lerArquivo(arquivo_veiculos);
 
         if(!dados_veiculo.isEmpty()) {
 
@@ -146,9 +146,9 @@ public class LocadoraVeiculos implements Serializable {
 
         dados_carro.add(carro);
 
-        dados_carro.addAll(BancoDados.lerArquivoBinario(arquivo_carros));
+        dados_carro.addAll(BancoDados.lerArquivo(arquivo_carros));
 
-        BancoDados.gravarArquivoBinario(dados_carro, arquivo_carros);
+        BancoDados.gravarArquivo(dados_carro, arquivo_carros);
 
 
 
@@ -164,9 +164,9 @@ public class LocadoraVeiculos implements Serializable {
 
         dados_moto.add(moto);
 
-        dados_moto.addAll(BancoDados.lerArquivoBinario(arquivo_motos));
+        dados_moto.addAll(BancoDados.lerArquivo(arquivo_motos));
 
-        BancoDados.gravarArquivoBinario(dados_moto, arquivo_motos);
+        BancoDados.gravarArquivo(dados_moto, arquivo_motos);
 
 
 
@@ -176,7 +176,7 @@ public class LocadoraVeiculos implements Serializable {
 
     public void realizarLocacaoCarro(String arquivos_veiculo, Carro alocacao_carro){
 
-        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivos_veiculo);
+        ArrayList<Object> dados_banco = BancoDados.lerArquivo(arquivos_veiculo);
 
         ArrayList<Object> dados_atualizado = new ArrayList<>();
 
@@ -188,13 +188,13 @@ public class LocadoraVeiculos implements Serializable {
                 dados_atualizado.add(dado);
         }
 
-        BancoDados.gravarArquivoBinario(dados_atualizado, arquivos_veiculo);
+        BancoDados.gravarArquivo(dados_atualizado, arquivos_veiculo);
 
     }
 
     public void realizarLocacaoMoto(String arquivos_veiculo, Moto alocacao_moto){
 
-        ArrayList<Object> dados_banco = BancoDados.lerArquivoBinario(arquivos_veiculo);
+        ArrayList<Object> dados_banco = BancoDados.lerArquivo(arquivos_veiculo);
 
         ArrayList<Object> dados_atualizado = new ArrayList<>();
 
@@ -211,7 +211,7 @@ public class LocadoraVeiculos implements Serializable {
         }
 
 
-        BancoDados.gravarArquivoBinario(dados_atualizado, arquivos_veiculo);
+        BancoDados.gravarArquivo(dados_atualizado, arquivos_veiculo);
 
     }
 
