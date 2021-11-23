@@ -1,6 +1,7 @@
 package projeto_alocacao_POO;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 public class Veiculo implements Serializable {
 
@@ -15,6 +16,7 @@ public class Veiculo implements Serializable {
     protected int tempo_locacao;
     protected double porcentagem_desconto;
     protected double valor_total_locacao;
+    private Cliente cliente;
 
     public double getValor_total_locacao() {
         return valor_total_locacao;
@@ -52,13 +54,6 @@ public class Veiculo implements Serializable {
         this.seguro = seguro;
     }
 
-    public Veiculo(double valor_locacao, String descricao, String placa) {
-        this.valor_locacao = valor_locacao;
-        this.descricao = descricao;
-        this.placa = placa;
-        this.disponibilidade = true;
-    }
-
     public String getTipo() {
         return tipo;
     }
@@ -83,7 +78,44 @@ public class Veiculo implements Serializable {
         return placa;
     }
 
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
     public boolean isDisponibilidade() {
         return disponibilidade;
+    }
+
+
+    public void formularioVeiculo(){
+
+        DecimalFormat df = new DecimalFormat("#0.00");
+
+        this.valor_locacao = VerificadoresTipo.verificarDouble("Digite o valor da locação: ");
+
+        this.valor_locacao = Double.parseDouble(df.format(this.valor_locacao));
+
+        this.descricao = VerificadoresTipo.verificarCampo("Digite uma descrição do veiculo: ");
+
+        this.disponibilidade = true;
+
+    }
+
+
+    public void formularioLocacaoVeiculo(String nome, String identificador){
+
+
+        this.tempo_locacao = VerificadoresTipo.verificarInteiro("Digitar o tempo de locação(MÍNIMO DE 1 DIA):\n" +
+                "Deve ser uma valor positivo(+) maior ou igual a 1 ");
+
+        this.data_locacao = VerificadoresTipo.verificarData("Digitar a data de locacao: ").strip();
+
+        this.seguro = VerificadoresTipo.verificarBoolean("Digtar: \n" +
+                "true -- com seguro\n" +
+                "false -- sem seguro\n");
+
+        this.porcentagem_desconto = VerificadoresTipo.verificarDouble("Digtar o valor do desconto(MÁXIMO 12%):\n" +
+                "OBS: deve ser uma valor positivo(+) entre 0% e 12% ");
+
     }
 }

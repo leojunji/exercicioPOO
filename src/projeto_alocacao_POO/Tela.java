@@ -6,6 +6,20 @@ import java.util.ArrayList;
 
 public class Tela {
 
+    public static int menu(){
+
+        return VerificadoresTipo.verificarInteiro("Selecione uma opção: \n\n" +
+                "1  --  Cadastrar veículo\n" +
+                "2  --  Cadastrar Cliente\n" +
+                "3  --  Locação de veículos\n" +
+                "4  --  Listagem de veículos cadastrados\n" +
+                "5  --  Listagem de clientes\n" +
+                "6  --  Listagem das locações\n" +
+                "7  --  Listagem de veículos disponíveis\n" +
+                "8  --  Sair\n");
+
+    }
+
 
 
     public static void mostrarCarros(String arquivo_veiculos, boolean disponibilidade, boolean mostrar_alocadores){
@@ -32,7 +46,7 @@ public class Tela {
 
                                 "=================================================================" + "\n" +
                                 (mostrar_alocadores ?
-                                        ( "Valor total da locação: " + ((Carro) dado).getValor_total_locacao() + "\n"  +
+                                        ( "Valor total da locação: R$" + ((Carro) dado).getValor_total_locacao() + "\n"  +
 
                                                 "Tempo da Locação: " + ((Carro) dado).getTempo_locacao() + " dia(s)\n" +
 
@@ -76,7 +90,7 @@ public class Tela {
 
                                 "=================================================================" + "\n" +
                                 (mostrar_alocadores ?
-                                        ("Valor total da locação: " + ((Moto) dado).getValor_total_locacao() + "\n"+
+                                        ("Valor total da locação: R$" + ((Moto) dado).getValor_total_locacao() + "\n"+
 
                                                 "Tempo da Locação: " + ((Moto) dado).getTempo_locacao() + " dia(s)\n" +
 
@@ -113,6 +127,24 @@ public class Tela {
 
         }
 
+
+    }
+
+
+    /**
+     * retorna true se o usuario confirmar a locacao*/
+    public static boolean confirmarLocacao(Object veiculo, double valor_seguro){
+
+        boolean resp = VerificadoresTipo.verificarBoolean("DESCONTO: " + ((Veiculo)veiculo).getPorcentagem_desconto() + "%\n\n" +
+                "SEGURO: R$" + valor_seguro + "\n\n" +
+                "DIÁRIA: R$" + ((Veiculo)veiculo).getValor_locacao() + "\n\n" +
+                "VALOR TOTAL: R$" + ((Veiculo)veiculo).valor_total_locacao + "\n" +
+                "================================================================\n" +
+                        "DIGITAR: \n" +
+                        "true -- ACEITAR\n" +
+                        "false --recusar");
+
+        return resp;
 
     }
 

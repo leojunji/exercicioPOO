@@ -16,11 +16,6 @@ public class Carro extends Veiculo implements Serializable {
         this.cliente = cliente;
     }
 
-    public Carro(double valor_locacao, String descricao, String placa, int quant_passageiros) {
-        super(valor_locacao, descricao, placa);
-        this.quant_passageiros = quant_passageiros;
-        this.tipo = "Carro";
-    }
 
 
     public int getQuant_passageiros() {
@@ -34,4 +29,49 @@ public class Carro extends Veiculo implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    @Override
+    public void formularioVeiculo() {
+        super.formularioVeiculo();
+
+        this.quant_passageiros = VerificadoresTipo.verificarInteiro("Digite a quantidade de passageiros: ");
+    }
 }
+
+/**
+ * if(tipo.equals("Carro")){
+ *
+ *
+ *
+ *                         locadoraVeiculos.cadastrarCarro(arquivo_veiculos,
+ *                                 new Carro(valor_locacao, descriçao, placa, quant_passageiros));
+ *
+ *
+ *                     }else {
+ *
+ *                         boolean partida_eletrica = VerificadoresTipo.verificarBoolean("digite: \n" +
+ *                                 "true  --  com partida eletrica\n" +
+ *                                 "false -- sem partida eletrica");
+ *
+ *
+ *                         locadoraVeiculos.cadastrarMoto(arquivo_veiculos, new Moto(valor_locacao, descriçao, placa, partida_eletrica));
+ *                     }
+ *
+ *                 }catch (Exception e){
+ *                     JOptionPane.showMessageDialog(null,
+ *                             "Não foi possível realizar o cadastro do veículo");
+ *                 }
+ *
+ *             } else {
+ *                 JOptionPane.showMessageDialog(null, "O veículo ja está cadastrado " +
+ *                         "\nTipo: " + tipo + "\n Placa: " + placa);
+ *             }
+ *
+ *
+ *         }catch (Exception e){
+ *
+ *             JOptionPane.showMessageDialog(null,
+ *                     "É necessário preencher todos os campos corretamente");
+ *         }
+ *
+ * */

@@ -21,15 +21,7 @@ public class Main  implements Serializable {
         JOptionPane.showMessageDialog(null, "LOCADORA: " +  locadoraVeiculos.getNome_locadora());
         while(true) {
 
-            opcao = VerificadoresTipo.verificarInteiro("Selecione uma opção: \n\n" +
-                    "1  --  Cadastrar veículo\n" +
-                    "2  --  Cadastrar Cliente\n" +
-                    "3  --  Locação de veículos\n" +
-                    "4  --  Listagem de veículos cadastrados\n" +
-                    "5  --  Listagem de clientes\n" +
-                    "6  --  Listagem das locações\n" +
-                    "7  --  Listagem de veículos disponíveis\n" +
-                    "8  --  Sair\n");
+            opcao = Tela.menu();
 
 
             switch (opcao) {
@@ -49,40 +41,33 @@ public class Main  implements Serializable {
                         String placa = VerificadoresTipo.verificarCampo("Placa do veiculo: ");
 
 
-
-
                         if (!locadoraVeiculos.veiculoExistente(tipo, placa, arquivo_veiculos)) {
 
-                            try { //tem por causa da opcao cancel do JOptionPane
+                            if(tipo.equals("Carro")){
 
-                                double valor_locacao = VerificadoresTipo.verificarDouble("Digite o valor da locação: ");
+                                Carro carro = new Carro();
 
-                                String descriçao = VerificadoresTipo.verificarCampo("Digite uma descrição do veiculo: ");
+                                carro.setTipo(tipo);
 
+                                carro.setPlaca(placa);
 
+                                carro.formularioVeiculo();
 
-
-                               if(tipo.equals("Carro")){
-
-                                   int quant_passageiros = VerificadoresTipo.verificarInteiro("Digite a quantidade de passageiros: ");
-
-                                   locadoraVeiculos.cadastrarCarro(arquivo_veiculos,
-                                           new Carro(valor_locacao, descriçao, placa, quant_passageiros));
+                                locadoraVeiculos.cadastrarCarro(arquivo_veiculos, carro);
 
 
-                               }else {
+                            }else{
 
-                                   boolean partida_eletrica = VerificadoresTipo.verificarBoolean("digite: \n" +
-                                           "true  --  com partida eletrica\n" +
-                                           "false -- sem partida eletrica");
+                                Moto moto = new Moto();
 
+                                moto.setTipo(tipo);
 
-                                   locadoraVeiculos.cadastrarMoto(arquivo_veiculos, new Moto(valor_locacao, descriçao, placa, partida_eletrica));
-                               }
+                                moto.setPlaca(placa);
 
-                            }catch (Exception e){
-                                JOptionPane.showMessageDialog(null,
-                                        "Não foi possível realizar o cadastro do veículo");
+                                moto.formularioVeiculo();
+
+                                locadoraVeiculos.cadastrarMoto(arquivo_veiculos, moto);
+
                             }
 
                         } else {
@@ -106,23 +91,17 @@ public class Main  implements Serializable {
 
                         JOptionPane.showMessageDialog(null, "CADASTRAR CLIENTE");
 
-                        String nome = VerificadoresTipo.verificarCampo("nome: ");
+                        Cliente cliente = new Cliente();
 
-                        String endereco = VerificadoresTipo.verificarCampo("endereço: ");
+                        cliente.formularioCliente();
 
-                        String data_nascimento = VerificadoresTipo.verificarData("Data de nascimento: ");
-
-                        String identificador = VerificadoresTipo.verificarCampo("Coloque um identificador: ");
-
-
-                        if (locadoraVeiculos.clienteExistente(nome, identificador, arquivo_clientes)) {
+                        if (locadoraVeiculos.clienteExistente(cliente.getNome(), cliente.getIdentificador(), arquivo_clientes)) {
 
                             JOptionPane.showMessageDialog(null, "Cliente ja existe");
 
                         } else {
 
-                            locadoraVeiculos.cadastrarCliente(arquivo_clientes,
-                                    new Cliente(nome, endereco, data_nascimento, identificador));
+                            locadoraVeiculos.cadastrarCliente(arquivo_clientes, cliente);
 
                             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
 
@@ -141,16 +120,7 @@ public class Main  implements Serializable {
 
                 case 3: {
 
-                    int tempo_locacao = 0;
-                    String data_locacao = "";
-                    boolean seguro = false;
-                    double porcentagem_desconto = 0.0d;
-                    double valor_seguro = 0;
-
                     try {
-
-                        JOptionPane.showMessageDialog(null, "LOCAÇÃO DE VEÍCULOS");
-
                         String nome_cliente = VerificadoresTipo.verificarCampo("Nome do cliente: ");
 
                         String identificador_cliente = VerificadoresTipo.verificarCampo("Identificador do usuário: ");
@@ -166,150 +136,92 @@ public class Main  implements Serializable {
 
                             String placa = VerificadoresTipo.verificarCampo("Placa do veiculo: ").strip();
 
-                            if(locadoraVeiculos.veiculoExistente(tipo, placa, arquivo_veiculos)) {
+                            if (locadoraVeiculos.veiculoExistente(tipo, placa, arquivo_veiculos)) {
 
-                                System.out.println("Verificar disponibilidade: " + locadoraVeiculos.veiculoDisponivel(arquivo_veiculos, placa));
+                                if (locadoraVeiculos.veiculoDisponivel(arquivo_veiculos, placa)) {
 
-                                if(locadoraVeiculos.veiculoDisponivel(arquivo_veiculos, placa)) {
+                                    if(tipo.equals("Carro")){
 
+                                        Carro carro = ((Carro)locadoraVeiculos.pegarDadoVeiculo(arquivo_veiculos, placa));
 
-                                    tempo_locacao = VerificadoresTipo.verificarInteiro("Digitar o tempo de locação(MÍNIMO DE 1 DIA):\n" +
-                                            "Deve ser uma valor positivo(+) maior ou igual a 1 ");
+                                        carro.setCliente(locadoraVeiculos.pegarDadoCliente(arquivo_clientes, nome_cliente,
+                                                identificador_cliente));
 
-                                    data_locacao = VerificadoresTipo.verificarData("Digitar a data de locacao: ").strip();
+                                        carro.formularioLocacaoVeiculo(nome_cliente, identificador_cliente);
 
-                                    seguro = VerificadoresTipo.verificarBoolean("Digtar: \n" +
-                                            "true -- com seguro\n" +
-                                            "false -- sem seguro\n");
+                                        if (carro.getTempo_locacao() >= 1 &
+                                                (carro.getPorcentagem_desconto() >= 0 & carro.getPorcentagem_desconto() <= 12)){
 
-                                    porcentagem_desconto = VerificadoresTipo.verificarDouble("Digtar o valor do desconto(MÁXIMO 12%):\n" +
-                                            "OBS: deve ser uma valor positivo(+) entre 0% e 12% ");
+                                            carro.setDisponibilidade(false);
 
-                                    if (tempo_locacao >= 1 & (porcentagem_desconto >= 0 & porcentagem_desconto <= 12)) {
-
-                                        if (tipo.equals("Carro")) {
-
-                                            Carro carro = ((Carro)locadoraVeiculos.pegarDadoVeiculo(arquivo_veiculos, placa));
-
-                                            carro.setData_locacao(data_locacao);
-
-                                            carro.setTempo_locacao(tempo_locacao);
-
-                                            carro.setPorcentagem_desconto(porcentagem_desconto);
-
-                                            carro.setSeguro(seguro);
-
-                                            carro.setCliente(locadoraVeiculos.pegarDadoCliente(arquivo_clientes, nome_cliente,
-                                                    identificador_cliente));
-
+                                            double valor_seguro = 0;
                                             if (carro.isSeguro())
                                                 valor_seguro = locadoraVeiculos.caucularSeguroCarro(carro.getValor_locacao(), carro.getQuant_passageiros());
 
                                             double valor_total = locadoraVeiculos.fazerCauculoLocacao(carro.getTempo_locacao(),
                                                     carro.getValor_locacao(), valor_seguro, carro.getPorcentagem_desconto());
 
-                                            int resp = VerificadoresTipo.verificarInteiro("LOCAÇÃO:\n" +
-                                                    "USUÁRIO: " + carro.getCliente().getNome() + "\n" +
-                                                    "IDENTIFICADOR: " + carro.getCliente().getIdentificador() + "\n" +
-                                                    "VALOR SEGURO: R$" + df.format(valor_seguro) + "\n" +
-                                                    "PORCENTAGEM DESCONTO: " + carro.getPorcentagem_desconto() + "%\n" +
-                                                    "TEMPO DE LOCAÇÃO: " + carro.getTempo_locacao() + "\n" +
-                                                    "CARRO: " + carro.getDescricao() + "\n" +
-                                                    "QUANTIDADE DE PASSAGEIROS: " + carro.getQuant_passageiros() + "\n" +
-                                                    "VALOR DIÁRIA: R$" + carro.getValor_locacao() + "\n" +
-                                                    "VALOR TOTAL: R$" + df.format(valor_total) + "\n" +
-                                                    "DIGITAR: \n" +
-                                                    "1 -- ACEITAR\n" +
-                                                    "2 -- RECUSAR");
+                                            carro.setValor_total_locacao(Double.parseDouble(df.format(valor_total)));
 
-                                            if (resp == 1) {
+                                            boolean resp = Tela.confirmarLocacao(carro, Double.parseDouble(df.format(valor_seguro)));
 
-                                                carro.setDisponibilidade(false);
-                                                carro.setValor_total_locacao(Double.parseDouble(df.format(valor_total)));
+                                            if(resp)
                                                 locadoraVeiculos.realizarLocacaoCarro(arquivo_veiculos, carro);
-                                                JOptionPane.showMessageDialog(null, "LOCAÇÃO FEITA");
 
-                                            } else {
+                                        }else{
 
-                                                JOptionPane.showMessageDialog(null, "A LOCAÇÃO NÃO  FOI REALIZADA");
+                                            JOptionPane.showMessageDialog(null, "É necessário preencher todos os campos corretamente");
 
-                                            }
+                                        }
 
 
-                                        } else {
+                                    }else{
 
-                                            Moto moto = ((Moto)locadoraVeiculos.pegarDadoVeiculo(arquivo_veiculos, placa));
+                                        Moto moto = ((Moto)locadoraVeiculos.pegarDadoVeiculo(arquivo_veiculos, placa));
 
-                                            moto.setData_locacao(data_locacao);
+                                        moto.setCliente(locadoraVeiculos.pegarDadoCliente(arquivo_clientes, nome_cliente,
+                                                identificador_cliente));
 
-                                            moto.setTempo_locacao(tempo_locacao);
+                                        moto.formularioLocacaoVeiculo(nome_cliente, identificador_cliente);
 
-                                            moto.setPorcentagem_desconto(porcentagem_desconto);
+                                        if ( moto.getTempo_locacao() >= 1 &
+                                                ( moto.getPorcentagem_desconto() >= 0 &  moto.getPorcentagem_desconto() <= 12)) {
+                                            moto.setDisponibilidade(false);
 
-                                            moto.setSeguro(seguro);
-
-                                            moto.setCliente(locadoraVeiculos.pegarDadoCliente(arquivo_clientes, nome_cliente,
-                                                    identificador_cliente));
-
+                                            double valor_seguro = 0;
                                             if (moto.isSeguro())
                                                 valor_seguro = locadoraVeiculos.caucularSeguroMoto(moto.getValor_locacao());
-
 
                                             double valor_total = locadoraVeiculos.fazerCauculoLocacao(moto.getTempo_locacao(),
                                                     moto.getValor_locacao(), valor_seguro, moto.getPorcentagem_desconto());
 
+                                            moto.setValor_total_locacao(Double.parseDouble(df.format(valor_total)));
 
+                                            boolean resp = Tela.confirmarLocacao(moto, Double.parseDouble(df.format(valor_seguro)));
 
-                                            int resp = VerificadoresTipo.verificarInteiro("LOCAÇÃO:\n" +
-                                                    "USUÁRIO: " + moto.getCliente().getNome() + "\n" +
-                                                    "IDENTIFICADOR: " + moto.getCliente().getIdentificador() + "\n" +
-                                                    "VALOR SEGURO: R$" + df.format(valor_seguro) + "\n" +
-                                                    "PORCENTAGEM DESCONTO: " + moto.getPorcentagem_desconto() + "%\n" +
-                                                    "TEMPO DE LOCAÇÃO: " + moto.getTempo_locacao() + "DIA(S)\n" +
-                                                    "MOTO: " + moto.getDescricao() + "\n" +
-                                                    "PARTIDA ELÉTRICA: " + moto.isPartida_eletrica() + "\n" +
-                                                    "VALOR DIÁRIA: R$" + moto.getValor_locacao() + "\n" +
-                                                    "VALOR TOTAL: R$" + df.format(valor_total) + "\n" +
-                                                    "DIGITAR: \n" +
-                                                    "1 -- ACEITAR\n" +
-                                                    "2 -- RECUSAR");
-
-                                            if (resp == 1) {
-
-                                                moto.setDisponibilidade(false);
-                                                moto.setValor_total_locacao(Double.parseDouble(df.format(valor_total)));
+                                            if(resp)
                                                 locadoraVeiculos.realizarLocacaoMoto(arquivo_veiculos, moto);
-                                                JOptionPane.showMessageDialog(null, "LOCAÇÃO FEITA");
-                                            } else {
-                                                JOptionPane.showMessageDialog(null, "A LOCAÇÃO NÃO  FOI REALIZADA");
-                                            }
+
+                                        }else{
+
+                                            JOptionPane.showMessageDialog(null, "É necessário preencher todos os campos corretamente");
 
                                         }
-
-                                    }else {
-                                        JOptionPane.showMessageDialog(null, "A ALOCAÇÃO NÃO FOI REALIZADA:\n" +
-                                                "Digite os valores corretamente");
                                     }
-                                }else{
-                                    JOptionPane.showMessageDialog(null, "Esse veículo não está está disponivel para alocação");
                                 }
-                            }else {
-
-                                JOptionPane.showMessageDialog(null, "Esse veículo não está cadastrado");
+                            }else{
+                                JOptionPane.showMessageDialog(null,
+                                        "Este veículo não está cadastrado");
                             }
-
-
-
-
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "Esse usuário não está cadastrado");
-
+                        }else{
+                            JOptionPane.showMessageDialog(null,
+                                    "Este cliente não está cadastrado");
                         }
-                    }catch (Exception e){
 
-                        JOptionPane.showMessageDialog(null, "É necessário preencher todos os campos corretamente");
-                        e.printStackTrace();
+
+
+                }catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "A locação não foi realizada");
                     }
                     break;
                 }
@@ -347,7 +259,6 @@ public class Main  implements Serializable {
                     JOptionPane.showMessageDialog(null,
                             "Opção Inválida!", "ERRO",
                             JOptionPane.ERROR_MESSAGE );
-                    //System.out.println(opcao + " é uma opcao inválida");
                     break;
                 }
             }

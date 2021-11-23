@@ -13,12 +13,7 @@ public class Cliente implements Serializable {
     private Carro carro; //locadora.getCarro().getTipo() ...
     private Moto moto;
 
-    public Cliente(String nome, String endereco, String data_nascimento, String identificador) {
-        this.nome = nome;
-        this.endereco = endereco;
-        this.data_nascimento = data_nascimento;
-        this.identificador = identificador;
-    }
+
 
 
     public Carro getCarro() {
@@ -47,6 +42,19 @@ public class Cliente implements Serializable {
 
     public String getIdentificador() {
         return identificador;
+    }
+
+
+    public void formularioCliente(){
+
+        this.nome = VerificadoresTipo.verificarCampo("nome: ");
+
+        this.endereco = VerificadoresTipo.verificarCampo("endereço: ");
+
+        this.data_nascimento = VerificadoresTipo.verificarData("Data de nascimento: ");
+
+        this.identificador = VerificadoresTipo.verificarCampo("Coloque um identificador: ");
+
     }
 
 

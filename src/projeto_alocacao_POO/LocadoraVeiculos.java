@@ -198,10 +198,6 @@ public class LocadoraVeiculos implements Serializable {
 
         ArrayList<Object> dados_atualizado = new ArrayList<>();
 
-        //dados_kawsaki --> dados_banco
-
-        //dados_kawsaki + dados_alocador(Cliente) --> dados_atualizado
-
         dados_atualizado.add(alocacao_moto);
 
         for(Object dado : dados_banco){

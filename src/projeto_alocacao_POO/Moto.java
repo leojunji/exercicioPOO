@@ -17,12 +17,6 @@ public class Moto extends Veiculo implements Serializable {
     }
 
 
-    public Moto( double valor_locacao, String descricao, String placa, boolean partida_eletrica) {
-        super(valor_locacao, descricao, placa);
-        this.partida_eletrica = partida_eletrica;
-        this.tipo = "Moto";
-    }
-
 
     public boolean isPartida_eletrica() {
         return partida_eletrica;
@@ -34,5 +28,15 @@ public class Moto extends Veiculo implements Serializable {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+
+    @Override
+    public void formularioVeiculo() {
+        super.formularioVeiculo();
+
+        this.partida_eletrica = VerificadoresTipo.verificarBoolean("digite: \n" +
+                                                 "true  --  com partida eletrica\n" +
+                                  "false -- sem partida eletrica");
     }
 }
