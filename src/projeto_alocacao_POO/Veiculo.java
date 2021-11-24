@@ -102,7 +102,8 @@ public class Veiculo implements Serializable {
     }
 
 
-    public void formularioLocacaoVeiculo(String nome, String identificador){
+
+    public void formularioLocacaoVeiculo(){
 
 
         this.tempo_locacao = VerificadoresTipo.verificarInteiro("Digitar o tempo de locação(MÍNIMO DE 1 DIA):\n" +

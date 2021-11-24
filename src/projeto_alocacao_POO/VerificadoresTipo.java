@@ -5,6 +5,9 @@ import java.util.Locale;
 
 public class VerificadoresTipo {
 
+
+    /**
+     * ira retornar apenas quando o campo nao estiver vazio*/
     public static String verificarCampo(String message){
 
         while(true){
@@ -19,6 +22,8 @@ public class VerificadoresTipo {
 
         }
     }
+
+
 
     public static double verificarDouble(String message){
 

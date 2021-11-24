@@ -53,7 +53,7 @@ public class Main  implements Serializable {
 
                                 carro.formularioVeiculo();
 
-                                locadoraVeiculos.cadastrarCarro(arquivo_veiculos, carro);
+                                locadoraVeiculos.cadastrarVeiculo(arquivo_veiculos, carro);
 
 
                             }else{
@@ -66,7 +66,7 @@ public class Main  implements Serializable {
 
                                 moto.formularioVeiculo();
 
-                                locadoraVeiculos.cadastrarMoto(arquivo_veiculos, moto);
+                                locadoraVeiculos.cadastrarVeiculo(arquivo_veiculos, moto);
 
                             }
 
@@ -147,7 +147,7 @@ public class Main  implements Serializable {
                                         carro.setCliente(locadoraVeiculos.pegarDadoCliente(arquivo_clientes, nome_cliente,
                                                 identificador_cliente));
 
-                                        carro.formularioLocacaoVeiculo(nome_cliente, identificador_cliente);
+                                        carro.formularioLocacaoVeiculo();
 
                                         if (carro.getTempo_locacao() >= 1 &
                                                 (carro.getPorcentagem_desconto() >= 0 & carro.getPorcentagem_desconto() <= 12)){
@@ -182,7 +182,7 @@ public class Main  implements Serializable {
                                         moto.setCliente(locadoraVeiculos.pegarDadoCliente(arquivo_clientes, nome_cliente,
                                                 identificador_cliente));
 
-                                        moto.formularioLocacaoVeiculo(nome_cliente, identificador_cliente);
+                                        moto.formularioLocacaoVeiculo();
 
                                         if ( moto.getTempo_locacao() >= 1 &
                                                 ( moto.getPorcentagem_desconto() >= 0 &  moto.getPorcentagem_desconto() <= 12)) {

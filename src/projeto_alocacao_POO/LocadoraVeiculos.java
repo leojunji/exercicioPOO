@@ -74,6 +74,22 @@ public class LocadoraVeiculos implements Serializable {
 
     //veiculo---------------------------------------------------------------------
 
+    public void cadastrarVeiculo(String arquivo_veiculos, Object veiculo) {
+
+
+
+        ArrayList<Object> dados_veiculo = new ArrayList<>();
+
+        dados_veiculo.add(veiculo);
+
+        dados_veiculo.addAll(BancoDados.lerArquivo(arquivo_veiculos));
+
+        BancoDados.gravarArquivo(dados_veiculo, arquivo_veiculos);
+
+
+
+    }
+
     public Veiculo pegarDadoVeiculo(String arquivo_carros, String placa){
 
         ArrayList<Object> dados_banco =  BancoDados.lerArquivo(arquivo_carros);
@@ -90,6 +106,7 @@ public class LocadoraVeiculos implements Serializable {
         return veiculo_dado;
     }
 
+    /**@return true==usuario disponivel ou false*/
     public boolean veiculoDisponivel(String arquivo_veiculos, String placa){
 
         ArrayList<Object> dados_veiculo = BancoDados.lerArquivo(arquivo_veiculos);
@@ -116,14 +133,6 @@ public class LocadoraVeiculos implements Serializable {
 
             for (Object dado : dados_veiculo) {
 
-                System.out.println("veiculoExistente()");
-
-                System.out.println("((Veiculo)dado).getTipo(): " + ((Veiculo)dado).getTipo() + " == User tipo: " + tipo);
-
-                System.out.println("((Veiculo)dado).getPlaca() " + ((Veiculo)dado).getPlaca() + " == User placa: " + placa);
-
-                System.out.println("=====================================");
-
                 if(((Veiculo)dado).getTipo().equals(tipo) & ((Veiculo)dado).getPlaca().equals(placa)){
                     return true;
                 }
@@ -132,43 +141,6 @@ public class LocadoraVeiculos implements Serializable {
         }
 
         return false;
-
-    }
-
-
-
-    //Carro--------------------------------------------------------------------------------------------------
-
-    public void cadastrarCarro(String arquivo_carros, Carro carro) {
-
-
-        ArrayList<Object> dados_carro = new ArrayList<>();
-
-        dados_carro.add(carro);
-
-        dados_carro.addAll(BancoDados.lerArquivo(arquivo_carros));
-
-        BancoDados.gravarArquivo(dados_carro, arquivo_carros);
-
-
-
-    }
-
-    //Moto--------------------------------------------------------------------------------------------------
-
-    public void cadastrarMoto(String arquivo_motos, Moto moto) {
-
-
-
-        ArrayList<Object> dados_moto = new ArrayList<>();
-
-        dados_moto.add(moto);
-
-        dados_moto.addAll(BancoDados.lerArquivo(arquivo_motos));
-
-        BancoDados.gravarArquivo(dados_moto, arquivo_motos);
-
-
 
     }
 

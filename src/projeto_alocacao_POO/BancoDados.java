@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 public class BancoDados {
 
-    //-----------------novos métodos
-
 
     public static void gravarArquivo(ArrayList<Object> lista, String nomeArq) {
         File arq = new File(nomeArq);

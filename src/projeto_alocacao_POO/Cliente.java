@@ -10,19 +10,8 @@ public class Cliente implements Serializable {
     private String endereco ;
     private String data_nascimento;
     private String identificador;
-    private Carro carro; //locadora.getCarro().getTipo() ...
-    private Moto moto;
 
 
-
-
-    public Carro getCarro() {
-        return carro;
-    }
-
-    public void setCarro(Carro carro) {
-        this.carro = carro;
-    }
 
     public String getNome() {
         return nome;
