@@ -208,6 +208,11 @@ public class Main  implements Serializable {
 
                                         }
                                     }
+                                }else{
+
+                                    JOptionPane.showMessageDialog(null,
+                                            "Este veículo não está disponível para alocação");
+
                                 }
                             }else{
                                 JOptionPane.showMessageDialog(null,

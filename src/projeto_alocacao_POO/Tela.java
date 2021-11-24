@@ -135,7 +135,7 @@ public class Tela {
      * retorna true se o usuario confirmar a locacao*/
     public static boolean confirmarLocacao(Object veiculo, double valor_seguro){
 
-        boolean resp = VerificadoresTipo.verificarBoolean("DESCONTO: " + ((Veiculo)veiculo).getPorcentagem_desconto() + "%\n\n" +
+        return VerificadoresTipo.verificarBoolean("DESCONTO: " + ((Veiculo)veiculo).getPorcentagem_desconto() + "%\n\n" +
                 "SEGURO: R$" + valor_seguro + "\n\n" +
                 "DIÁRIA: R$" + ((Veiculo)veiculo).getValor_locacao() + "\n\n" +
                 "VALOR TOTAL: R$" + ((Veiculo)veiculo).valor_total_locacao + "\n" +
@@ -143,8 +143,6 @@ public class Tela {
                         "DIGITAR: \n" +
                         "true -- ACEITAR\n" +
                         "false --recusar");
-
-        return resp;
 
     }
 
